@@ -1,9 +1,9 @@
 import {Component} from 'react';
 import './login.css'
 import TextField from '@material-ui/core/TextField';
-import { Button } from '@material-ui/core'
+import {Button} from '@material-ui/core'
 import GoogleHeader from '../../Components/Google-Header/GoogleHeader';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 export default class Login extends Component {
     constructor(probs){
@@ -34,8 +34,8 @@ export default class Login extends Component {
        })
        var valid = true;
 
-       let patter = "^[0-9a-zA-Z]+([.\\-_+][0-9a-zA-Z]+)*@[a-z0-9A-Z]+.[a-z]{2,4}([.][a-zA-Z]{2,})*$";
-       let pattern = new RegExp(patter);
+       let reg_patt = "^[0-9a-zA-Z]+([.\\-_+][0-9a-zA-Z]+)*@[a-z0-9A-Z]+.[a-z]{2,4}([.][a-zA-Z]{2,})*$";
+       let pattern = new RegExp(reg_patt);
        if (!pattern.test(this.state.username)) {
            this.setState({ usernameError: true })
            this.setState({ usernameErrorMsg: "Invalid Gmail address" })
@@ -86,10 +86,10 @@ export default class Login extends Component {
                             <p className="signin-font"> Sign in</p>
                             <div>  Use your Google Account </div>
                             <div className="textfields">
-                                <TextField id="outlined-basic" error={this.state.usernameError} helperText={this.state.usernameErrorMsg} className="TFwidth"
+                                <TextField id="outlined-basic" error={this.state.usernameError} helperText={this.state.usernameErrorMsg} className="text-width"
                                  variant="outlined" name="username" label="Email or phone " size="small" onChange={this.handlechange} margin="dense" />
                                 <TextField id="outlined-basic" type={this.state.showpassword ? "password" : "type"}  error={this.state.passwordError} 
-                                helperText={this.state.passwordErrorMsg} variant="outlined" className="TFwidth" name="password" label="Password" size="small" 
+                                helperText={this.state.passwordErrorMsg} variant="outlined" className="text-width" name="password" label="Password" size="small" 
                                 margin="dense" onChange={this.handlechange}/>
                                 <div className="pswd">
                                     <input type="checkbox" id="radio" onClick={this.handleClick} value="Show password"/>

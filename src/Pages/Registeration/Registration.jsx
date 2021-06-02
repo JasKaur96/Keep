@@ -1,8 +1,8 @@
 import {Component } from 'react';
 import './Registeration.css'
 import TextField from '@material-ui/core/TextField';
-import { Button } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
+import {Button} from '@material-ui/core';
 import GoogleHeader from '../../Components/Google-Header/GoogleHeader'
 
 export default class Registration extends Component {
@@ -30,11 +30,13 @@ export default class Registration extends Component {
             
         };
     }
+
     handleChange = (e) => {
         let name = e.target.name;
         let value = e.target.value;
         this.setState({ [name]: value })
     }
+
     handleClick = (e) => {
         this.setState({ showpassword: !this.state.showpassword })
 
@@ -54,39 +56,40 @@ export default class Registration extends Component {
             confirmpasswordErrorMsg: ''
         })
         var valid = true;
+        let fname = "[A-Z]{1}[a-z]*";
+        let fnamePattern = new RegExp(fname);
 
-        let fnamePat = "[A-Z]{1}[a-z]*";
-        let fnamePattern = new RegExp(fnamePat);
         if (!fnamePattern.test(this.state.firstname)) {
             this.setState({ firstnameError: true })
-            this.setState({ firstnameErrorMsg: "Invalid first name" })
+            this.setState({ firstnameErrorMsg: "Invalid firstname" })
             valid = false;
         }
 
         if (this.state.firstname.length == 0) {
             this.setState({ firstnameError: true })
-            this.setState({ firstnameErrorMsg: "Enter first name " })
+            this.setState({ firstnameErrorMsg: "Enter firstname " })
             valid = false;
         }
 
-        let lnamePat = "[A-Z]+([ '-][a-zA-Z]+)*";
-        let lnamePattern = new RegExp(lnamePat);
+        let lname = "^[A-Z]{1}[a-z]*";
+        let lnamePattern = new RegExp(lname);
+
         if (!lnamePattern.test(this.state.firstname)) {
             this.setState({ lastnameError: true })
-            this.setState({ lastnameErrorMsg: "Invalid last name" })
+            this.setState({ lastnameErrorMsg: "Invalid lastname" })
             valid = false;
         }
 
         if (this.state.firstname.length == 0 && this.state.lastname.length == 0) {
             this.setState({ firstnameError: true })
             this.setState({ lastnameError: true })
-            this.setState({ firstnameErrorMsg: "Enter first name, lastname" })
+            this.setState({ firstnameErrorMsg: "Enter firstname, lastname" })
             valid = false;
         }
 
 
-        let patter = "^[0-9a-zA-Z]+([.\\-_+][0-9a-zA-Z]+)*@[a-z0-9A-Z]+.[a-z]{2,4}([.][a-zA-Z]{2,})*$";
-        let pattern = new RegExp(patter);
+        let userPattern = "^[a-zA-Z0-9_.]+@[a-zA-Z.a-zA-Z{2,}.a-zA-Z{2,}]+$";
+        let pattern = new RegExp(userPattern);
         if (!pattern.test(this.state.username)) {
             this.setState({ usernameError: true })
             this.setState({ usernameErrorMsg: "Invalid Gmail address" })
@@ -100,12 +103,12 @@ export default class Registration extends Component {
 
         if (this.state.password.length != 0 && this.state.password != this.state.confirmpassword) {
             this.setState({ passwordError: true })
-            this.setState({ passwordErrorMsg: "password didn't match " })
+            this.setState({ passwordErrorMsg: "Password didn't match" })
             valid = false;
         }
         if (this.state.password.length < 8) {
             this.setState({ passwordError: true })
-            this.setState({ passwordErrorMsg: "password should be atleast 8 characters" })
+            this.setState({ passwordErrorMsg: "Password should be atleast 8 characters" })
             valid = false;
         }
 
@@ -169,8 +172,7 @@ export default class Registration extends Component {
                                     <Button variant="outlined" onClick={this.submit} size="small">Submit</Button>
                                     
                                 </div>
-                            </div>                            
-                            
+                            </div>                         
                         </div>
                         <div className="image">
                             <img src="https://ssl.gstatic.com/accounts/signup/glif/account.svg" alt="" width="244" height="244"/>
@@ -228,131 +230,3 @@ export default class Registration extends Component {
 
 
 
-
-
-
-// import { Component } from "react";
-// import './Registeration.css'
-// import TextField from "@material-ui/core/TextField";
-// import Checkbox from "@material-ui/core/Checkbox";
-// import Button from "@material-ui/core/Button";
-// import GoogleHeader from "../../Components/Google-Header/GoogleHeader";
-
-// class Registeration extends Component{
-
-//     constructor(props){
-//         super(props)
-//         this.state = {
-//           firstName: "",
-//           firstNameFlag: false,
-//           firstNameError: "",
-//           lastName: "",
-//           lastNameFlag: false,
-//           lastNameError: "",
-//           email: "",
-//           emailFlag: false,
-//           emailError: "",
-//           password: "",
-//           passwordFlag: false,
-//           passwordError: "",
-//           conformPassword: "",
-//           conformPasswordFlag: false,
-//           conformPasswordError: "",
-//           showPassword: false,
-//           setOpen: false,
-//           open: false,
-//           snackMessage: "",
-//           snackType: ""
-//         };
-//       }
-//       render(){
-//         return(
-//             <div className="registration">
-//                 <div className="signupPage">
-//                 <div className="header-content">
-//                     <GoogleHeader/>
-//                     <div className="headerText">Create your Fundoo Account </div>
-//                 </div>
-//                     </div>
-//                 <div className="container">
-//                 <div className="inline">
-//                 <TextField autoCapitalize="off" name="firstName"                   onChange={(e) => this.change(e)}
-//                     value={this.state.firstName}
-//                     error={this.state.firstNameFlag}
-//                     helperText={this.state.firstNameError}
-//                     size="small"
-//                     label="First Name"
-//                     variant="outlined"
-//                     fullWidth
-//                   />
-//                 </div>
-//                 <div className="inputField">
-//                   <TextField
-//                     size="small"
-//                     name="lastName"
-//                     label="Last Name"
-//                     onChange={(e) => this.change(e)}
-//                     variant="outlined"
-//                     value={this.state.lastName}
-//                     error={this.state.lastNameFlag}
-//                     helperText={this.state.lastNameError}
-//                     fullWidth
-//                   />
-//                 </div>
-//                 </div>
-//                 <div className="inputs">
-//                 <div className="inputField">
-//                   <TextField
-//                     size="small"
-//                     variant="outlined"
-//                     fullWidth
-//                     className="emailField"
-//                     name="email"
-//                     value={this.state.email}
-//                     helperText={this.state.emailError}
-//                     error={this.state.emailFlag}
-//                     onChange={(e) => this.change(e)}
-//                     label="email"
-//                   />
-//                 </div>
-//               </div>
-//               <div className="inputs">
-//                 <div className="inputField">
-//                   <TextField
-//                     size="small"
-//                     id="password"
-//                     label="Password"
-//                     name="password"
-//                     onChange={(e) => this.change(e)}
-//                     value={this.state.password}
-//                     error={this.state.passwordFlag}
-//                     helperText={this.state.passwordError}
-//                     fullWidth
-//                     type={this.state.showPassword ? "text" : "password"}
-//                     variant="outlined"
-//                   />
-//                 </div>
-//                 <div className="inputField">
-//                   <TextField
-//                     size="small"
-//                     id="password"
-//                     label="Confirm"
-//                     name="conformPassword"
-//                     onChange={(e) => this.change(e)}
-//                     value={this.state.conformPassword}
-//                     helperText={this.state.conformPasswordError}
-//                     error={this.state.conformPasswordFlag}
-//                     fullWidth
-//                     type={this.state.showPassword ? "text" : "password"}
-//                     variant="outlined"
-//                   />
-//                 </div>
-//               </div>
-
-
-//             </div>
-//         )
-//       }
-// }
-
-// export default Registeration

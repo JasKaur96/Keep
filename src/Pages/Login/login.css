@@ -17,21 +17,23 @@
     /* background-color:violet; */
 }
 .topcontent{
-            display: flex;
-            flex-direction: column;
-            justify-content: space-evenly;
-             align-items: center;
-            margin-top: 10px;
-            font-family: roboto,'Noto Sans Myanmar UI',arial,sans-serif;
-            font-size: 16px;
-        }
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 10px;
+    font-size: 16px;
+    font-family: roboto,'Noto Sans Myanmar UI',arial,sans-serif;
+}
+
 .signin-font{
     font-size: 24px;
 } 
 
-.TFwidth{
+.text-width{
     width: 360px;
-}       
+}  
+
 .inline__button{
     display: flex;
     flex-direction: row;

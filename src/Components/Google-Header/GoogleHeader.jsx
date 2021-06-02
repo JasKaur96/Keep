@@ -12,8 +12,7 @@ const GoogleHeader = () => {
                     <span  style={{"color":"red"}}>e</span>      
             </div> 
         </div>
-    )
-   
+    )   
 }
 
 export default GoogleHeader
