@@ -1,11 +1,12 @@
-import logo from './logo.svg';
 import './App.css';
-import Registeration from '../src/Pages/Registeration/Registeration'
+import { BrowserRouter as Router, Route, Switch, Link, BrowserRouter } from 'react-router-dom';
+import Login from './Pages/Login/Login';
+import Registration from './Pages/Registeration/Registration';
+import Routing from './Routes/Routing';
+
 function App() {
   return (
-    <div className="App">
-     <Registeration/>
-    </div>
+    <BrowserRouter> <Routing/> </BrowserRouter>
   );
 }
 
