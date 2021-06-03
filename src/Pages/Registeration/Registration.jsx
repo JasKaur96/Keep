@@ -2,8 +2,11 @@ import {Component } from 'react';
 import './Registeration.css'
 import TextField from '@material-ui/core/TextField';
 import {Link} from 'react-router-dom';
-import {Button} from '@material-ui/core';
+import {Button, Slide, Snackbar} from '@material-ui/core';
 import GoogleHeader from '../../Components/Google-Header/GoogleHeader'
+import userService from '../../Services/UserServices'
+
+const service = new userService();
 
 export default class Registration extends Component {
 
@@ -27,7 +30,7 @@ export default class Registration extends Component {
             confirmpasswordErrorMsg: "",
             showpassword: true,
             show: false,
-            
+            snackmsg:""
         };
     }
 
@@ -42,6 +45,14 @@ export default class Registration extends Component {
 
     }
   
+
+    handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        this.setState({ show: false })
+    }
+
     validationCheck = () => {
         this.setState({
             firstnameError: false,
@@ -125,10 +136,47 @@ export default class Registration extends Component {
 
         if (this.validationCheck()) {
            this.setState({ show: true })
-        }
 
-        else {
+        //    let data={
+        //        "firstName" : this.state.firstname,
+        //        "lastName" : this.state.lastname,
+        //        "email" : this.state.email,
+        //        "password": this.state.password,
+        //        "service" : "advance",
+        //    }
+        //    service.userRegister(data).then((result) =>{
+        //        this.setState({show:true})
+        //        this.setState({ snackmsg: "Registrationn succeccfull" })
+        //        this.props.history.push('/login');
+        //    })
+        //    .catch((e) => {
+        //        console.log(e);
+        //        this.setState({snackmsg: "Register error"});
+        //        this.setState({show:true});
+        //    });
+           
+        let data = {
+            "firstName": this.state.firstname,
+            "lastName": this.state.lastname,
+            "email": this.state.username,
+            "password": this.state.password,
+            "service": "advance"
+        }
+        service.userRegister(data).then((result) => {
+            console.log(result);
+            this.setState({ snackmsg: "Registration succeccfull" })
             this.setState({ show: true })
+            this.props.history.push('/login');
+        })
+        .catch((e)=>{console.log(e);
+            this.setState({ snackmsg: "Registration error" })
+            this.setState({ show: true })
+        });
+
+        }else{
+            this.setState({ show: true })
+            
+            this.setState({snackmsg: "Please Enter valid data."});
         }
 
     }
@@ -170,7 +218,17 @@ export default class Registration extends Component {
                                 <div className="inline__buttons">
                                     <Link to="/login">Sign in instead</Link>
                                     <Button variant="outlined" onClick={this.submit} size="small">Submit</Button>
-                                    
+                                    <Snackbar
+                                        anchorOrigin={{
+                                            vertical: 'bottom',
+                                            horizontal: 'left',
+                                        }}
+                                        TransitionComponent={Slide}
+                                        open={this.state.show}
+                                        autoHideDuration={1000}
+                                        onClose={this.handleClose}
+                                        message={this.state.snackmsg}
+                                    />
                                 </div>
                             </div>                         
                         </div>

@@ -1,9 +1,12 @@
 import {Component} from 'react';
 import './login.css'
 import TextField from '@material-ui/core/TextField';
-import {Button} from '@material-ui/core'
+import {Button, Slide, Snackbar} from '@material-ui/core'
 import GoogleHeader from '../../Components/Google-Header/GoogleHeader';
 import {Link} from 'react-router-dom';
+import userService from '../../Services/UserServices'
+
+const service = new userService();
 
 export default class Login extends Component {
     constructor(probs){
@@ -16,7 +19,8 @@ export default class Login extends Component {
             "passwordError":false,
             "passwordErrorMsg":"",
             "showpassword":true,
-            "show": false,            
+            "show": false,          
+            "snackmsg":"" ,
         }        
     }
     
@@ -71,11 +75,41 @@ export default class Login extends Component {
       
        if(this.validationCheck()){
            this.setState({ show: true })
+           let data={
+                "email": this.state.username,
+                "password": this.state.password,
+                "service" : "advance"
+           }
+           service.userLogin(data).then((result) => {
+                localStorage.setItem('Token', result.data.id);
+                localStorage.setItem('FirstName', result.data.firstName);
+                localStorage.setItem('LastName',result.data.lastName);
+                localStorage.setItem('userDetails', JSON.stringify(result.data))
+               
+                this.setState({ snackmsg: "login successfull" })
+                this.setState({ show: true })
+                this.props.history.push('/dashboard');
+            }).catch((error) => {
+                console.log(error);
+                this.setState({ snackmsg: "login error" })
+                this.setState({ show: true })
+             })
         }
-        else{            
-            this.setState({ show: true })
+        else{
+            this.setState({ show: true }) 
+            this.setState({ snackmsg: "Please Enter Valid details" })
         }
+    
 }
+
+handleClose = (reason) =>{
+    if(reason === 'clickaway'){
+        return;
+    }
+    this.setState({ show:false});
+}
+
+
     render() {
         return (
             <>
@@ -110,9 +144,20 @@ export default class Login extends Component {
                             <div className="inline__button">
                                     <Link to="/">Create Account</Link>
                                     <Button variant="outlined" onClick={this.submit} >Next</Button>
-                                    
+                                    <Snackbar
+                                        anchorOrigin={{
+                                            vertical: 'bottom',
+                                            horizontal: 'left',
+                                        }}
+                                        TransitionComponent={Slide}
+                                        open={this.state.show}
+                                        autoHideDuration={1500}
+                                        onClose={this.handleClose}
+                                        message={this.state.snackmsg}
+                                    />
                                 </div>
                     </div>
+                    
                 </div>
             </>
         )
