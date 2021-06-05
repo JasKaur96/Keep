@@ -69,18 +69,18 @@ export default function SideDrawer(props){
 
   const handleDrawerOpen = () => {
     setOpen(!open);
-    props.drawerOpen()
+    // props.drawerOpen()
     console.log("draweropen drawer")
   };
   const handleDrawerClose = () => {
     setOpen(open);
-    props.drawerClose()
+    // props.drawerClose()
     console.log("drawerclose drawer")
   };
  
   const handleDrawerOpenClose = () => {
     console.log("Click drawer")
-    props.drawerOpenClose()
+    // props.drawerOpenClose()
     setOpen(!open);
   };
       return(
