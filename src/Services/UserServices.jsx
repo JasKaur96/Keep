@@ -8,14 +8,11 @@ export default class UserService{
 
     userRegister(data){
         console.log("User Service")
-        // return axios.postMethod(this.url+"user/userSignUp",data);
-        return axios.postMethod(`${this.url}user/userSignUp`, data)
+        return axios.postMethod(this.url+"user/userSignUp",data);
     }
 
     userLogin(data){
         console.log("User Login")
-        // return axios.postMethod(this.url+"user/login",data);   
-        return axios.postMethod(`${this.url}user/login`, data)
-   
+        return axios.postMethod(this.url+"user/login",data);      
     }
 }

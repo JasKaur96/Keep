@@ -137,24 +137,6 @@ export default class Registration extends Component {
         if (this.validationCheck()) {
            this.setState({ show: true })
 
-        //    let data={
-        //        "firstName" : this.state.firstname,
-        //        "lastName" : this.state.lastname,
-        //        "email" : this.state.email,
-        //        "password": this.state.password,
-        //        "service" : "advance",
-        //    }
-        //    service.userRegister(data).then((result) =>{
-        //        this.setState({show:true})
-        //        this.setState({ snackmsg: "Registrationn succeccfull" })
-        //        this.props.history.push('/login');
-        //    })
-        //    .catch((e) => {
-        //        console.log(e);
-        //        this.setState({snackmsg: "Register error"});
-        //        this.setState({show:true});
-        //    });
-           
         let data = {
             "firstName": this.state.firstname,
             "lastName": this.state.lastname,
@@ -165,23 +147,21 @@ export default class Registration extends Component {
         service.userRegister(data).then((result) => {
             console.log(result);
             this.setState({ snackmsg: "Registration succeccfull" })
-            this.setState({ show: true })
+          
             this.props.history.push('/login');
         })
         .catch((e)=>{console.log(e);
             this.setState({ snackmsg: "Registration error" })
-            this.setState({ show: true })
-        });
+          });
 
         }else{
-            this.setState({ show: true })
             
             this.setState({snackmsg: "Please Enter valid data."});
         }
 
     }
     render(){
-        return (
+        return ( 
             <>
             <div className="register-main">
                 <div className="register-body">

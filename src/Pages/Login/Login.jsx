@@ -12,15 +12,15 @@ export default class Login extends Component {
     constructor(probs){
         super(probs);
         this.state ={
-            "username":"",
-            "password":"",
-            "usernameError":false,
-            "usernameMsg":"",
-            "passwordError":false,
-            "passwordErrorMsg":"",
-            "showpassword":true,
-            "show": false,          
-            "snackmsg":"" ,
+            username:"",
+            password:"",
+            usernameError:false,
+            usernameMsg:"",
+            passwordError:false, 
+            passwordErrorMsg:"",
+            showpassword:true,
+            show: false,          
+            snackmsg: ""
         }        
     }
     
@@ -71,7 +71,7 @@ export default class Login extends Component {
        this.setState({ showpassword: !this.state.showpassword })
 
    }
-   submit =()=>{
+   submit =()=>{ 
       
        if(this.validationCheck()){
            this.setState({ show: true })
@@ -87,12 +87,10 @@ export default class Login extends Component {
                 localStorage.setItem('userDetails', JSON.stringify(result.data))
                
                 this.setState({ snackmsg: "login successfull" })
-                this.setState({ show: true })
                 this.props.history.push('/dashboard');
             }).catch((error) => {
                 console.log(error);
                 this.setState({ snackmsg: "login error" })
-                this.setState({ show: true })
              })
         }
         else{
@@ -144,17 +142,17 @@ handleClose = (reason) =>{
                             <div className="inline__button">
                                     <Link to="/">Create Account</Link>
                                     <Button variant="outlined" onClick={this.submit} >Next</Button>
-                                    <Snackbar
+                                    {/* <Snackbar
                                         anchorOrigin={{
                                             vertical: 'bottom',
                                             horizontal: 'left',
                                         }}
                                         TransitionComponent={Slide}
                                         open={this.state.show}
-                                        autoHideDuration={1500}
+                                        autoHideDuration={1000}
                                         onClose={this.handleClose}
                                         message={this.state.snackmsg}
-                                    />
+                                    /> */}
                                 </div>
                     </div>
                     
