@@ -7,15 +7,8 @@ import AppsIcon from '@material-ui/icons/Apps';
 import '../../Pages/Dashboard/Daashboard.css';
 import grid from '../../Assets/Icons/grid.svg';
 import SideDrawer from "../Drawer/SideDrawer";
-
-import bulb from '../../Assets/Icons/bulb.svg'
-import bell from '../../Assets/Icons/bell.svg'
-import edit from '../../Assets/Icons/edit.svg'
-import archive from '../../Assets/Icons/archive.svg'
-import trash from '../../Assets/Icons/trash.svg'
 import clsx from "clsx";
 import React from "react";
-
 
 const drawerWidth = 230;
 
@@ -143,8 +136,8 @@ export default function Appbar(props){
       };
    
     const handleDrawerOpenClose = () => {
-      console.log("Click drawer app")
-      setOpen({open: !props.open});
+      console.log("Click drawer app", !open)
+      setOpen(!open);
     };
    const handleToggle = () => {
       console.log("open");
@@ -154,7 +147,7 @@ export default function Appbar(props){
            
             <AppBar position='fixed' color='white' className="appBar">
                 <Toolbar>
-                    <IconButton onClick={()=>handleDrawerOpenClose} 
+                    <IconButton onClick={handleDrawerOpenClose} 
                     className={clsx(classes.menuButton, {[classes.menuButton]: open, [classes.hide]: !open,
                       })} 
                       color="inherit" edge="start">                           
@@ -190,45 +183,13 @@ export default function Appbar(props){
                    </div>
                  </Toolbar>
             </AppBar>  
-            <SideDrawer open={open} drawerOpen={handleDrawerOpen} drawerClose={handleDrawerClose} drawerOpenClose={handleDrawerOpenClose}
-          // className={clsx(classes.drawer, {
-          //       [classes.drawerOpen]: open,
-          //       [classes.drawerClose]: !open,
-          //     })}
-          //     classes={{ paper: clsx({ [classes.drawerOpen]: open, [classes.drawerClose]: !open,}),
-          //     }}
+            <SideDrawer 
+              open={open} 
+              drawerOpen={handleDrawerOpen} 
+              drawerClose={handleDrawerClose} 
+              drawerOpenClose={handleDrawerOpenClose} 
             />
-            {/* <Drawer onMouseOver={drawerOpen} onMouseLeave={drawerClose} variant="permanent" className={clsx(classes.drawer, {
-                [classes.drawerOpen]: open,
-                [classes.drawerClose]: !open,
-              })}
-              classes={{ paper: clsx({ [classes.drawerOpen]: open, [classes.drawerClose]: !open,}),
-              }}
-            >
           
-            <ListItem button key={'Notes'} className={classes.listItems} >
-            
-              <ListItemIcon > <IconButton  edge="start">  <img src={bulb} ></img></IconButton></ListItemIcon>
-              <ListItemText primary={'Notes'}/>
-            </ListItem>
-            <ListItem button key={'Remainders'} className={classes.listItems}>
-              <ListItemIcon><IconButton  edge="start"> <img src={bell}></img></IconButton></ListItemIcon>
-              <ListItemText primary={'Remainders'}/>
-            </ListItem>
-            <ListItem button key={'Editlabels'} className={classes.listItems} >
-              <ListItemIcon><IconButton  edge="start"> <img src={edit}></img></IconButton> </ListItemIcon>
-              <ListItemText primary={'Edit labels'}/>
-            </ListItem>
-            <ListItem button key={'Archive'} className={classes.listItems}>
-              <ListItemIcon><IconButton edge="start"> <img src={archive}></img></IconButton>
-              </ListItemIcon>
-              <ListItemText primary={'Archive'}/>
-            </ListItem>
-            <ListItem button key={'Trash'} className={classes.listItems}>
-              <ListItemIcon><IconButton  edge="start"> <img src={trash}></img></IconButton></ListItemIcon>
-              <ListItemText primary={'Trash'}/>
-            </ListItem>
-        </Drawer> */}
         </div>
     )
 }

@@ -1,0 +1,239 @@
+.takeNotes-main {
+    width: 579px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.302),
+    2px 4px 6px 4px rgba(60, 64, 67, 0.149);
+    border-radius: 7px;
+    margin-left: 34%;
+    margin-top: 2.5%;
+    background-color: rgb(255, 255, 255);
+  
+}
+
+.closeBtn{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    /* padding-right: 40px; */
+    /* border: none; */
+    /* width:130px; */
+    color: black;
+  }
+.close-btn{
+    color: black;
+    border:none;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-end;
+     /* padding-right: 40px; */
+    /* border: none; */
+    width:100px;
+    height:30px;
+    background-color: white;
+}
+.icons{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-left: 515px;
+    margin-top:-30px;
+}
+.addNoteField{
+    border:ghostwhite;
+    font-size: 15px;
+    width: 429px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding:5px;
+    
+    background-color: rgb(255, 255, 255);
+    /* padding-left:-5px; */
+} 
+.notes-field {
+    border: none;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-self: flex-start;
+    width: 100%; */
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding:10px;
+    margin-left: -50px;
+}
+.inputText{
+    border: 0px;
+    font-size: 17px;
+    width: 429px;
+    padding-left: 10px;
+    
+}
+
+.addNotesMain {
+    width: 579px;
+      display: flex;
+  flex-direction: column;
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.302),
+  2px 4px 6px 4px rgba(60, 64, 67, 0.149);
+  border-radius: 10px;
+  margin-left: 34%;
+  margin-top: 2.5%;
+}
+.addNoteField{
+    width: 100%;
+
+}
+.notesField {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.noteInput{
+    display: flex;
+    align-items: center;
+    padding: 7px 15px 7px 15px;
+    width: 100%;
+}
+
+.imgIconClose{
+    width: 100px;
+    display: flex;
+    justify-content: flex-end;
+    /* align-items: flex-end; */
+}
+.icon-open{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 20px;
+}
+.icon-open-content{
+    color: dimgrey;
+    width: 321px;
+}
+
+.icon-open-close{
+        cursor: pointer;
+        width: 12%;
+        font-weight: inherit;
+}
+
+.noteInput{
+    display: flex;
+    align-items: center;
+    /* padding: 7px 15px 7px 15px; */
+    width: 100%;
+}
+.simpleNoteShow{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-radius: 10px;
+    width: 100%;
+
+}
+.addNoteOptions{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.closeNotes{
+  padding: 6px 10px 7px 244px; 
+}
+.closeNotes:hover{
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 715px){
+    .takeNotes-main 
+        {
+        width: 100%;
+    }
+    .addNoteOptions {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+}
+@media only screen and (max-width: 455px){
+   .noteInput{
+    display: flex;
+    flex-direction: column;   }
+}
+@media only screen and (max-width: 400px){
+   .addNoteOptions{
+       display: flex;
+       flex-direction: column;
+   }
+   .closeNotes{
+       width: 100%;
+       display: flex;
+       justify-content: flex-end;
+   }
+   .notesField {
+        display: flex;
+        flex-direction: column;
+        /* padding: 7px 15px 0px 15px; */
+        width: 100%;
+   }
+ }
+
+
+
+
+
+
+ 
+.takenote{
+    width: 600px;
+   height: auto;
+   border-radius: 8px;
+   border:1px solid #dadce0;
+   box-shadow: 0 10px 10px rgba(92,99,105,.2);
+   margin-left: 500px;
+   margin-top: 100px;
+   display: flex;
+ 
+   justify-content: space-around;
+   align-items: center;
+   opacity: 0.7;
+ }
+ .takenote input{
+   height: 40px;
+   width: 400px;
+   border:none;
+   margin-left: 50px;
+   font-family: 'Roboto',arial,sans-serif;
+   font-size: 15px;
+   outline: none;
+ }
+ .brieftakenote{
+   width: 600px;
+   height: 140px;
+   border-radius: 8px;
+   border:1px solid #dadce0;
+   box-shadow: 0 10px 25px rgba(92,99,105,.2);
+   margin-left: 500px;
+   margin-top: 100px;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-around;
+   padding: 10px;
+   background-color: white;
+ }
+ 
+ .inputbase{
+   /* background-color: violet; */
+   width: 560px;
+ }

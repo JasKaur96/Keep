@@ -65,32 +65,32 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SideDrawer(props){
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
+  // const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
-    setOpen(!open);
-    // props.drawerOpen()
+    // setOpen(!open);
+    props.drawerOpen()
     console.log("draweropen drawer")
   };
   const handleDrawerClose = () => {
-    setOpen(open);
-    // props.drawerClose()
+    // setOpen(open);
+    props.drawerClose()
     console.log("drawerclose drawer")
   };
  
-  const handleDrawerOpenClose = () => {
-    console.log("Click drawer")
-    // props.drawerOpenClose()
-    setOpen(!open);
-  };
+  // const handleDrawerOpenClose = () => {
+  //   console.log("Click drawer")
+  //   // props.drawerOpenClose()
+  //   setOpen(!open);
+  // };
       return(
         <div className={classes.root}>
         <CssBaseline />
         <Drawer onMouseOver={handleDrawerOpen} onMouseLeave={handleDrawerClose} variant="permanent" className={clsx(classes.drawer, {
-            [classes.drawerOpen]: open,
-            [classes.drawerClose]: !open,
+            [classes.drawerOpen]: props.open,
+            [classes.drawerClose]: !props.open,
           })}
-          classes={{ paper: clsx({ [classes.drawerOpen]: open, [classes.drawerClose]: !open,}),
+          classes={{ paper: clsx({ [classes.drawerOpen]: props.open, [classes.drawerClose]: !props.open,}),
           }}
         >
           
