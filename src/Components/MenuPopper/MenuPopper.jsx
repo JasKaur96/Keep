@@ -18,7 +18,7 @@ export default function MenuPopper(){
     return(
         <div>
             <div onClick={e=>handleClick(e)}>
-            <IconButton  className="icon-place" color="inherit"  edge="start">  <MoreVertIcon></MoreVertIcon></IconButton>
+            <IconButton  className="icon-place" color="inherit"  edge="start">  <MoreVertIcon  style={{"width":"21px"}}></MoreVertIcon></IconButton>
             </div>
             <Popper  id={id} onClick={e=>handleClick(e)} open={open} anchorEl={anchorEl}>
                 <div  className="menu-popper">

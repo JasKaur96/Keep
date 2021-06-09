@@ -65,24 +65,10 @@ export default function GetNotes(props) {
     })
   }
 
-  const click =()=>{
-    setOpen(!open);
-  }
-  
-  
-  const close = () =>{
-  click();
-
-  
-}
-
-// const Note = () => {
   return (
             <div>
-                <Addnote  getNote={getNote}/>
-                <DisplayNote  getNote={getNote} notes={note}/>
-                {/* <DisplayNotes/> */}
-
+                <Addnote getNote={getNote}/>
+                <DisplayNote getNote={getNote} notes={note}/>
             </div>
   );
 }

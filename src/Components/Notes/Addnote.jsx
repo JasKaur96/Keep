@@ -15,6 +15,9 @@ import MenuPopper from "../MenuPopper/MenuPopper";
 import Archive from "../ArchivePopper/ArchivePopper";
 import Image from "../ImagePopper/Image";
 import Color from "../ColorPopper/Color";
+import Undo from "../Undo/Undo";
+import Redo from "../Undo/Redo";
+
 const service = new Services();
 
 const useStyles = makeStyles((theme) => ({
@@ -89,14 +92,15 @@ export default function Addnote(props) {
       :<>
         <div className="brieftakenote">
           <div >
-            <InputBase style={{"width":"93%"}} defaultValue="" multiline placeholder=" Title"
+            <InputBase style={{"width":"93%"}} defaultValue="" multiline placeholder="Title"
               onChange={(e) => setTitle(e.target.value)} 
               inputProps={{'aria-label': 'Title'}} />
             {/* <BrushOutlinedIcon/> */}
             <img style={{"width":"25px"}} src={pin}></img>
+            <InputBase fullWidth onChange={(e)=>setNote(e.target.value)}  multiline defaultValue="" placeholder="Take a Note "/>
+       
           </div>
-          <InputBase fullWidth onChange={(e)=>setNote(e.target.value)}  multiline defaultValue="" placeholder=" Take a Note "/>
-          
+         
           <div>          
             <div className="">
               <div className="closeBtn"> 
@@ -105,7 +109,7 @@ export default function Addnote(props) {
              </div>
            </div>          
         </div>        
-        <div className="icons"> <Reminder/><Color/><Image/><Archive/><MenuPopper/></div>
+        <div className="icons"> <Reminder/><Color/><Image/><Archive/><MenuPopper/><Undo/><Redo/></div>
       </>
      }
      {/* <GetNotes/> */}

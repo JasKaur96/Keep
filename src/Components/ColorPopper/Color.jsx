@@ -1,5 +1,5 @@
 import PaletteOutlinedIcon from '@material-ui/icons/PaletteOutlined';
-
+import UndoIcon from '@material-ui/icons/Undo';
 import { IconButton, Popper } from "@material-ui/core";
 import React from "react";
 import bell from "../../Assets/Icons/bell.svg"
@@ -52,7 +52,7 @@ export default function Color(props){
             ];
     return (
         <div>
-            <IconButton  className="icon-place" color="inherit"  edge="start">  <PaletteOutlinedIcon className="" aria-describedby={id} type="button" onClick={handleClick} style={{cursor:"pointer"}}/>
+            <IconButton  className="icon-place" color="inherit"  edge="start">  <PaletteOutlinedIcon  className="" aria-describedby={id} type="button" onClick={handleClick} style={{cursor:"pointer", width:"20px"}}/>
 </IconButton>            <Popper  placement="top-start" id={id} open={open} anchorEl={anchorEl}>
                 <div>
                     {
