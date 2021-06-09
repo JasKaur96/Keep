@@ -8,9 +8,13 @@ import ImageOutlinedIcon from "@material-ui/icons/ImageOutlined";
 // import NoteOptions from "../noteIconOptions/noteOptions.jsx";
 import Services from "../../Services/NotesServices";
 import "./addNotes.css";
+import pin from "../../Assets/pin.jpeg";
 import Reminder from "../RemindPopper/Reminder";
 import GetNotes from "../GetNotes/GetNotes";
-import Icons from "../Icons/Icons";
+import MenuPopper from "../MenuPopper/MenuPopper";
+import Archive from "../ArchivePopper/ArchivePopper";
+import Image from "../ImagePopper/Image";
+import Color from "../ColorPopper/Color";
 const service = new Services();
 
 const useStyles = makeStyles((theme) => ({
@@ -59,11 +63,12 @@ export default function Addnote(props) {
     click();
 
     if(data.title === '' || data.description === ''){
-      console.log("NO note ");
+      console.log("No note ");
     }
     else{
       let token = localStorage.getItem('Token');
       service.addNotes(data,token).then((data) => {
+        props.updateData();
         console.log(data);
       })
       .catch((error) => {
@@ -87,30 +92,23 @@ export default function Addnote(props) {
             <InputBase style={{"width":"93%"}} defaultValue="" multiline placeholder=" Title"
               onChange={(e) => setTitle(e.target.value)} 
               inputProps={{'aria-label': 'Title'}} />
-            <BrushOutlinedIcon/>
+            {/* <BrushOutlinedIcon/> */}
+            <img style={{"width":"25px"}} src={pin}></img>
           </div>
           <InputBase fullWidth onChange={(e)=>setNote(e.target.value)}  multiline defaultValue="" placeholder=" Take a Note "/>
           
-          <div>
-          
+          <div>          
             <div className="">
-            {/* <Icons /> */}
-            
-         
               <div className="closeBtn"> 
-                  {/* <Icons/> */}
                 <button className="close-btn" type="button" onClick={close}  value="Close" placeholder="Close">Close</button>
                </div>
              </div>
-           </div>
-          
-        </div>
-
-        {/* <Icons/> */}
-        <div className="icons"> <Icons/></div>
+           </div>          
+        </div>        
+        <div className="icons"> <Reminder/><Color/><Image/><Archive/><MenuPopper/></div>
       </>
      }
-     <GetNotes/>
+     {/* <GetNotes/> */}
     </div>
 
   );

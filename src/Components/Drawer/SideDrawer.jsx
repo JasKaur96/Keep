@@ -53,10 +53,10 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '0 25px 25px 0',
   },
   '&:hover':{
-    backgroundColor:"#F6F2F1"
+    backgroundColor:"#F6F2F1",
   },
-  '&::selection':{
-    backgroundColor:"#feefc3"
+  '&:selection':{
+    backgroundColor:"#feefc3",
   }
 },
 

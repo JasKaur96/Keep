@@ -1,0 +1,66 @@
+.color-popper{
+    width: 200px;
+    height: 100px;
+    border-radius: 4px;
+    border:1px solid #dadce0;
+    /* margin-left: -160px; */
+    /* margin-top: 300px; */
+    display: flex;
+    background-color:white;
+    justify-content: flex-start;
+    padding:5px ;
+    
+}
+.color-data{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.color-box{
+    width: 579px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+    box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.302),
+    2px 4px 6px 4px rgba(60, 64, 67, 0.149);
+    border-radius: 7px; 
+    /* margin-left: 34%;
+    margin-top: 2.5%;     */
+}
+.icon-place{
+  /* padding:5px ; */
+  margin-right: 13px;
+}
+.colorButton {
+    margin: 1px;
+    width: 5px;
+    height: 5px;
+   
+  }
+ 
+.colorbox{
+    width: 155px;
+    height: 105px;
+    box-shadow: 0 5px 5px rgba(92,99,105,.2);
+    position: absolute;
+    left: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 10px;
+    /* z-index: 1300; */
+    background:white;
+    /* display: none; */
+  }
+  .colorsmall:hover{
+    border: black 2px solid;
+  }
+
+  .colorsmall{
+    margin: 2px;
+    width: 25px;
+    height: 25px;
+    flex-direction: column-wrap;
+    justify-content: flex-start;
+    border-radius: 50%;
+  }

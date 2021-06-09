@@ -13,19 +13,43 @@ export default class NotesService{
         });
     }
 
-    getNotes(data,token){
+    getNotes(token){
         console.log("Get Notes Service")
-        console.log(data);
-        return axios.getMethod(baseUrl+"notes/getNotesList",data, {
+        // console.log(data);
+        return axios.getMethod(baseUrl+"notes/getNotesList", {
             headers: {'Authorization': token}
         });
     }
 
-    updateNotes = (data,token) => {
-        return axios.postMethod(baseUrl+"/notes/updateNotes",data, {
+    updateNotes(data,token){
+        console.log("Get UpdateNotes Service")
+        // console.log(data);
+        return axios.postMethod(baseUrl+"notes/updateNotes",data, {
             headers: {'Authorization': token}
         });
     }
+    
+    colorChange = (data, token) => {
+        return axios.postMethod(baseUrl+"notes/changesColorNotes", data, {
+            headers: {'Authorization':token}
+        })
+    }
 
+    archiveNote = (data, token) => {
+        return axios.postMethod(baseUrl+"notes/archiveNotes", data, {
+            headers:{
+                'Authorization':token,
+            }
+        })
+    }
+    
+    // getArchiveNote = (token) => {
+    //     return axios.getMethod(`${this.baseUrl}notes/getArchiveNotesList`, {
+    //         headers: {'Authorization': token}
+    //     })
+    // }
 
+   
+
+    
 }

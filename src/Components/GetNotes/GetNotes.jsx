@@ -1,14 +1,13 @@
-import React from "react";
-import InputBase from "@material-ui/core/InputBase";
+import React, {useState, useEffect} from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import CheckBoxOutlinedIcon from "@material-ui/icons/CheckBoxOutlined";
 import BrushOutlinedIcon from "@material-ui/icons/BrushOutlined";
-import IconButton from "@material-ui/core/IconButton";
-import ImageOutlinedIcon from "@material-ui/icons/ImageOutlined";
-// import NoteOptions from "../noteIconOptions/noteOptions.jsx";
 import Services from "../../Services/NotesServices";
 import "../../Components/GetNotes/GetNotes.css";
-import Reminder from "../RemindPopper/Reminder";
+import { Dialog, Typography } from "@material-ui/core";
+import Addnote from "../Notes/Addnote";
+
+import DisplayNote from "../DisplayNote/DisplayNote";
+
 const service = new Services();
 
 const useStyles = makeStyles((theme) => ({
@@ -43,126 +42,47 @@ const useStyles = makeStyles((theme) => ({
 export default function GetNotes(props) {
   const classes = useStyles();
   const [open,setOpen] = React.useState(false);
-  var [title, setTitle] = React.useState();
-  var [note, setNote] = React.useState();
-  
+  var [title, setTitle] = React.useState([]);
+  var [note, setNote] = React.useState([]);
+
+  useEffect(() => {
+   getNote();
+
+  },[]);
+
+  const getNote = ()=>{
+    let token =localStorage.getItem('Token')
+
+    service.getNotes(token).then((result)=>{
+      let arrayData = result.data.data.data;
+      let array = arrayData.reverse();
+      setNote(array);
+      // setNote({note:result.data.data.data})
+      console.log(note);
+    })
+    .catch(err=>{
+      console.log(err);
+    })
+  }
+
   const click =()=>{
     setOpen(!open);
   }
-  const hoverNote =()=>{
-    setOpen(!open);
-  }
+  
   
   const close = () =>{
-    
-  let data = {
-    title: title,
-    description: note
-  }
-
   click();
 
-  if(data.title === '' || data.description === ''){
-    console.log("NO note ");
-  }
-  else{
-    let token = localStorage.getItem('Token');
-    service.addNotes(data,token).then((data) => {
-      console.log(data);
-    })
-    .catch((error) => {
-      console.log(error);
-    })
-  }
+  
 }
 
+// const Note = () => {
   return (
-  // <>
-  
-    <div className="display-note" >    
-      {!open ?  
-      <div >
-        <div className="note">
-          <div>
-            <h3 >Title here</h3>
-            {/* <BrushOutlinedIcon className="title"/> */}
-          </div>
-          <p>Description here</p>
-          
-          <div>           
-            <div className="">
+            <div>
+                <Addnote  getNote={getNote}/>
+                <DisplayNote  getNote={getNote} notes={note}/>
+                {/* <DisplayNotes/> */}
 
-            {/* <Reminder/> */}
-              {/* <div className="closeBtn">
-                <button className="close-btn" type="button" onClick={close}  value="Close" placeholder="Close">Close</button>
-               </div> */}
-             </div>
-           </div>
-
-           
-        </div>
-
-        <div className="note">
-          <div>
-            <h3>Title here</h3>            
-            {/* <BrushOutlinedIcon className="title"/> */}
-          </div>
-          <p>Description here</p>
-          <div>
-            <div className="">
-           
-            {/* <Reminder/> */}
-              {/* <div className="closeBtn">
-                <button className="close-btn" type="button" onClick={close}  value="Close" placeholder="Close">Close</button>
-               </div> */}
-             </div>
-           </div>
-           
-        </div>
-        </div>
-        :
-        <div onMouseOver="">
-        <div className="note">
-          <div>
-            <h3 >Title here</h3>
-            <BrushOutlinedIcon className="title"/>
-          </div>
-          <p>Description here</p>
-          
-          <div>           
-            <div className="">
-
-            {/* <Reminder/> */}
-              <div className="closeBtn">
-                <button className="close-btn" type="button" onClick={close}  value="Close" placeholder="Close">Close</button>
-               </div>
-             </div>
-           </div>
-
-           
-        </div>
-
-        <div className="note">
-          <div>
-            <h3>Title here</h3>            
-            <BrushOutlinedIcon className="title"/>
-          </div>
-          <p>Description here</p>
-          <div>
-            <div className="">
-           
-            {/* <Reminder/> */}
-              <div className="closeBtn">
-                <button className="close-btn" type="button" onClick={close}  value="Close" placeholder="Close">Close</button>
-               </div>
-             </div>
-           </div>
-
-           
-        </div>
-        </div>
-        }
-    
-    </div>
+            </div>
   );
 }

@@ -3,6 +3,7 @@ import Appbar from "../../Components/Header/Appbar";
 import React, { Component } from 'react'
 import {makeStyles, withStyles} from '@material-ui/core'
 import Addnote from "../../Components/Notes/Addnote";
+import GetNotes from "../../Components/GetNotes/GetNotes";
 
 const drawerWidth = 230;
 
@@ -157,7 +158,8 @@ class Dashboard extends Component{
             <div>
                 <Appbar/>
                 {/* <SideDrawer/> */}
-                <Addnote/>
+                {/* <Addnote/> */}
+                <GetNotes/>
             </div>
         )}
 }
