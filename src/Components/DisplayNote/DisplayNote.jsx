@@ -53,8 +53,8 @@ export default function DisplayNote(props) {
   var [title, setTitle] = React.useState("");
   var [description, setDescription] = React.useState("");
   var [note1, setNote] = React.useState("");
-  const [clr, setClr] = React.useState("");
-  const [noteId, setNoteId] = React.useState();
+  var [clr, setClr] = React.useState("");
+  const [id, setNoteId] = React.useState();
 
 
   const handleClickOpen = (e, data) => {
@@ -68,6 +68,7 @@ export default function DisplayNote(props) {
 
 
   const handleClose = () => {
+    
     setOpen({open: !open})
     // setOpen(false);
   };
@@ -84,36 +85,54 @@ export default function DisplayNote(props) {
   }
 
 const update = () =>{
-    
+  
   let data = {
     title: title,
     description: note1,
-    id:noteId
+    id:id
     // color:clr
   }
+  var requestData = new FormData();
+  requestData.append("noteId", id);
+  // requestData.set("file", state.file);
+  requestData.append("title", title);
+  requestData.append("description", note1);
 
-  click();
+
+  var formData = new FormData();
+
+  formData.append("username", "Groucho");
+  formData.append("accountnum", 123456); 
+
+// console.log("title",title);
+// console.log("description",note1);
+  console.log("description",id);
+  console.log("Formdata",formData);
+
 
   if(data.title === '' || data.description === ''){
     console.log("No note ");
   }
   else{
     let token = localStorage.getItem('Token');
-    service.updateNotes(data,token).then((data) => {
-      props.getNote();
-      props.updateNote();
+    console.log(requestData);
+    service.updateNotes(requestData,token).then((data) => {
+      // props.getNote();
+      // props.updateNote();
       console.log(data);
     })
     .catch((error) => {
       console.log(error);
     })
   }
+
+  click();
 }
 const setColor = (color) => {
   setClr({color: color})
 }
 
-console.log("Props Notes:",props.notes)
+// console.log("Props Notes:",props.notes)
 return ( <>
         <div className="display-note">
             {props.notes.map((data) => {
@@ -144,11 +163,11 @@ return ( <>
          <div>
            <div className="editnote" >
               <div>  
-               <div className="pin"> <InputBase defaultValue={title} multiline 
+               <div className="pin"> <InputBase value={title} multiline 
                    onChange={(e) => setTitle(e.target.value)} inputProps={{'aria-label': 'Title'}} />
                   <img style={{"width":"25px"}} src={pin}></img>                                    
                </div>                                 
-               <InputBase fullWidth onChange={(e)=>setNote(e.target.value)}  multiline defaultValue={note1} />
+               <InputBase fullWidth onChange={(e)=>setNote(e.target.value)}  multiline value={note1} />
             </div>   
             <div  className="icons-below"> <Reminder/><Color setColor={setColor}/><Image/><Archive/><MenuPopper/></div>
               <div className="closebtn"> 

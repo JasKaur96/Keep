@@ -74,7 +74,6 @@ export default function Addnote(props) {
       let token = localStorage.getItem('Token');
       service.addNotes(data,token).then((data) => {
         props.getNote();
-        props.updateData();
         props.updateNote();
         console.log(data);
       })
@@ -84,21 +83,8 @@ export default function Addnote(props) {
     }
   }
 
-//   const onSetColor=(color)=>{
-//     let Data ={
-//         noteIdList:[props.notes.noteId],
-//         color:color.code
-//     }
-//    service.changeColor(Data).then((data) =>{
-//         console.log('color of note',data);
-//         this.props.getNote();
-//     }).catch(error=>{
-//         console.log("color error",error);
-//     })
-//     console.log("Color",Data)
-// }
 
-console.log("ADd Color", clr)
+// console.log("ADd Color", clr)
   return (
     <div >
       {!open ? 

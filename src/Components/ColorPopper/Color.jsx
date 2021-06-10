@@ -9,7 +9,8 @@ const service = new Services();
 
 export default function Color(props){
     const[open,setOpen]=React.useState(false)
-    const[anchorEl,setanchorEl]=React.useState(null)
+    const[anchorEl,setanchorEl]=React.useState(null)  
+    var [clr, setColor] = React.useState();
 
     const colors = ["#fafafa" ,"#ef9a9a" , "#ffcc80" ,"#fff59d" ,"#dcedc8" ,"#b2dfdb" , "#e0f7fa" ,"#4fc3f7" ,
                     "#b39ddb" ,"#f8bbd0" ,"#a1887f" ,"#cfd8dc" ,
@@ -18,6 +19,7 @@ export default function Color(props){
     const handleClick = (event) => {
         setOpen(!open)
         setanchorEl(event.currentTarget)
+        setColor(event.currentTarget)
     }
 
     const id = open ? 'simple-popper' : undefined;  
@@ -25,9 +27,17 @@ export default function Color(props){
     const updateNote = (e, color, value) => {
         let token = localStorage.getItem("Token")
         let data = {
-            // noteId: [value.noteId],
+            noteId: id,
             color: color,
         }
+        setColor();
+        
+        // var requestData = new FormData();
+        // requestData.append("noteId", id);
+        // // requestData.set("file", state.file);
+        // // requestData.append("title", title);
+        // requestData.append("color", clr);
+
         // console.log("Color: ",data);
         service.colorChange(data, token).then((result)=> {
             // console.log(data);

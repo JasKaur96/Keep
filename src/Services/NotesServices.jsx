@@ -25,7 +25,9 @@ export default class NotesService{
         console.log("UpdateNotes Service")
         console.log(data);
         return axios.postMethod(baseUrl+"notes/updateNotes",data, {
-            headers: {'Authorization': token}
+            headers: {'Authorization': token,
+            'Content-Type': "multipart/form-data"
+        }
         });
     }
     
