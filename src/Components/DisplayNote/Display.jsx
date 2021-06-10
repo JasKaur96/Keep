@@ -46,10 +46,11 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export default function DisplayNote(props) {
+export default function Display(props) {
    
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  const [edit, setEdit] = React.useState(false);
   var [title, setTitle] = React.useState("");
   var [description, setDescription] = React.useState("");
   var [note1, setNote] = React.useState("");
@@ -59,9 +60,10 @@ export default function DisplayNote(props) {
 
   const handleClickOpen = (e, data) => {
     e.stopPropagation();
+    setEdit(true)
     setTitle(data.title);
     setNote(data.description);
-    setClr(data.color);
+    // setClr(data.color);
     setNoteId(data.id);
     setOpen(true);
   };
@@ -72,13 +74,6 @@ export default function DisplayNote(props) {
     // setOpen(false);
   };
 
-  // const handleTitle =(event)=>{
-  //   setTitle({title: event.target.data})
-  // }
-  // const handleDescription =(event)=>{
-  //   setTitle({description: event.target.data})
-  // }
-
   const click =()=>{
     setOpen(!open);
   }
@@ -88,8 +83,7 @@ const update = () =>{
   let data = {
     title: title,
     description: note1,
-    id:noteId
-    // color:clr
+    color:clr
   }
 
   click();
@@ -101,6 +95,7 @@ const update = () =>{
     let token = localStorage.getItem('Token');
     service.updateNotes(data,token).then((data) => {
       props.getNote();
+      props.updateData();
       props.updateNote();
       console.log(data);
     })
@@ -112,21 +107,20 @@ const update = () =>{
 const setColor = (color) => {
   setClr({color: color})
 }
-
 console.log("Props Notes:",props.notes)
 return ( <>
         <div className="display-note">
-            {props.notes.map((data) => {
-                var style = {backgroundColor : data.color}
+           
                 return (
                     <div>
                       <div className="note" style={style}>
                           <div onClick={(e) => handleClickOpen(e, data)}>  
                               <div className="pin"> 
-                                  <p>{data.title}<br></br>{data.description} </p>
+                                  {/* <p>{data.title}<br></br>{data.description} </p> */}
                                   <img style={{"width":"25px"}} src={pin}></img>      
-                               </div>                            
-                            
+                                  {/* <BrushOutlinedIcon className=""/>                     */}
+                              </div>                            
+                              {/* <p>{data.description}</p>   */}
                           </div>   
                           <div  className="icons-below"> <Reminder/><Color setColor={setColor}/><Image/><Archive/><MenuPopper/></div>
                           {/* <div className="closeBtn"> 
@@ -136,29 +130,30 @@ return ( <>
                     <div>                                           
                   </div>        
               </div>  
-              )
-            })}
+           
         </div>
 
-    <Dialog open={open} onClose={handleClose}  aria-labelledby="form-dialog-title">
-         <div>
-           <div className="editnote" >
-              <div>  
-               <div className="pin"> <InputBase defaultValue={title} multiline 
-                   onChange={(e) => setTitle(e.target.value)} inputProps={{'aria-label': 'Title'}} />
-                  <img style={{"width":"25px"}} src={pin}></img>                                    
-               </div>                                 
-               <InputBase fullWidth onChange={(e)=>setNote(e.target.value)}  multiline defaultValue={note1} />
-            </div>   
-            <div  className="icons-below"> <Reminder/><Color setColor={setColor}/><Image/><Archive/><MenuPopper/></div>
-              <div className="closebtn"> 
-                <button className="close-Btn" type="button" onClick={(e)=> update(e)}  value="Close" placeholder="Close">Close</button>
-              </div> 
-            </div>                    
-          <div>                                           
-        </div>        
-       </div>                           
-    </Dialog>
+    {/* <Dialog open={open} onClose={handleClose}  aria-labelledby="form-dialog-title">
+           <div>
+                      <div className="editnote" >
+                          <div>  
+                              <div className="pin"> <InputBase defaultValue={title} multiline 
+                                onChange={(e) => setTitle(e.target.value)} 
+                                inputProps={{'aria-label': 'Title'}} />
+                               <img style={{"width":"25px"}} src={pin}></img>                                    
+                              </div>                                 
+                              <InputBase fullWidth onChange={(e)=>setNote(e.target.value)}  multiline defaultValue={note1} />
+                          </div>   
+                          <div  className="icons-below"> <Reminder/><Color setColor={setColor}/><Image/><Archive/><MenuPopper/></div>
+                          <div className="closeBtn"> 
+                              <button className="close-btn" type="button" onClick={(e)=> update(e)}  value="Close" placeholder="Close">Close</button>
+                          </div> 
+                      </div>                    
+                    <div>                                           
+                  </div>        
+              </div>  
+         
+    </Dialog> */}
   </>
 )
 }

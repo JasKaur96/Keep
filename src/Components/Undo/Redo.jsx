@@ -16,8 +16,8 @@ export default function Redo(){
 
     return( 
         <div>
-            <div onClick={e=>handleClick(e)}><IconButton  className="" color="inherit"  edge="start">  
-            <RedoIcon  style={{"width":"21px"}}/>
+            <div onClick={e=>handleClick(e)}><IconButton color="inherit"  edge="start">  
+            <RedoIcon className="icon-place" style={{"width":"18px"}} />
             </IconButton></div>
            
             </div>

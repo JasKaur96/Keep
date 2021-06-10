@@ -12,7 +12,8 @@
 }
 .icon-place{
     /* padding:5px ; */
-    margin-right: 13px;
+    /* margin-right: -28px; */
+    margin-left: 25px;
 }
 .data{
     display: flex;
@@ -20,7 +21,7 @@
     justify-content: flex-end;
     /* align-items: flex-start; */
     
-} 
+}  
 .data1{
     display: flex;
     flex-direction: row;

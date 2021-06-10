@@ -12,13 +12,13 @@ export default function MenuPopper(){
         setanchorEl(event.currentTarget)
     };
 
-    console.log("Reminder", anchorEl);
+    // console.log("Reminder", anchorEl);
     const id = open ? 'simple-popper' : undefined;
 
     return(
         <div>
             <div onClick={e=>handleClick(e)}>
-            <IconButton  className="icon-place" color="inherit"  edge="start">  <MoreVertIcon  style={{"width":"21px"}}></MoreVertIcon></IconButton>
+            <IconButton className="icone-circle" color="inherit"  edge="start">  <MoreVertIcon className="icon-place"  style={{"width":"21px"}}></MoreVertIcon></IconButton>
             </div>
             <Popper  id={id} onClick={e=>handleClick(e)} open={open} anchorEl={anchorEl}>
                 <div  className="menu-popper">

@@ -18,7 +18,7 @@ export default function Undo(){
     return( 
         <div>
             <div onClick={e=>handleClick(e)}><IconButton  className="" color="inherit"  edge="start">  
-            <UndoIcon  style={{"width":"21px"}}/>
+            <UndoIcon  className="icon-place" style={{"width":"18px"}} />
             </IconButton></div>
            
             </div>

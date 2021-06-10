@@ -1,0 +1,66 @@
+ .displaynote{
+    width: 100px;
+    height: 150px;
+    margin-left: 480px;
+    margin-top: 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+  } 
+  
+
+.editnote{
+    width: 600px;
+    height: 140px;
+    border-radius: 8px;
+    /* border:1px solid #dadce0; */
+    /* box-shadow: 0 10px 25px rgba(92,99,105,.2); */
+    margin-left: 0px;
+    /* margin-top: 20px; */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    /* align-items: flex-start; */
+    padding: 25px;
+    background-color: white;
+  }
+
+  
+.closebtn{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    /* margin-left: 130px;  */
+    margin-top: -43px;
+    color: black;
+  }
+.close-Btn{
+    color: black;
+    border:none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+     /* padding-right: 40px; */
+    /* border: none; */
+    width:100px;
+    height:30px;
+    background-color: white;
+}
+.close-Btn:hover{
+  color: black;
+  border:none;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+   /* padding-right: 40px; */
+  /* border: none; */
+  width:100px;
+  height:30px;
+  background-color: rgb(230, 230, 230);
+}

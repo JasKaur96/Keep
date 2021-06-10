@@ -17,6 +17,7 @@ import Image from "../ImagePopper/Image";
 import Color from "../ColorPopper/Color";
 import Undo from "../Undo/Undo";
 import Redo from "../Undo/Redo";
+import Icon from "../Icons/Icons";
 
 const service = new Services();
 
@@ -50,8 +51,8 @@ export default function Addnote(props) {
   const classes = useStyles();
   const [open,setOpen] = React.useState(false);
   var [title, setTitle] = React.useState();
-  var [note, setNote] = React.useState();
-  
+  var [note, setNote] = React.useState();  
+  var [clr, setColor] = React.useState();
   const click =()=>{
     setOpen(!open);
   }
@@ -60,7 +61,8 @@ export default function Addnote(props) {
     
     let data = {
       title: title,
-      description: note
+      description: note,
+      color:clr
     }
 
     click();
@@ -71,7 +73,9 @@ export default function Addnote(props) {
     else{
       let token = localStorage.getItem('Token');
       service.addNotes(data,token).then((data) => {
+        props.getNote();
         props.updateData();
+        props.updateNote();
         console.log(data);
       })
       .catch((error) => {
@@ -80,6 +84,21 @@ export default function Addnote(props) {
     }
   }
 
+//   const onSetColor=(color)=>{
+//     let Data ={
+//         noteIdList:[props.notes.noteId],
+//         color:color.code
+//     }
+//    service.changeColor(Data).then((data) =>{
+//         console.log('color of note',data);
+//         this.props.getNote();
+//     }).catch(error=>{
+//         console.log("color error",error);
+//     })
+//     console.log("Color",Data)
+// }
+
+console.log("ADd Color", clr)
   return (
     <div >
       {!open ? 
@@ -93,14 +112,12 @@ export default function Addnote(props) {
         <div className="brieftakenote">
           <div >
             <InputBase style={{"width":"93%"}} defaultValue="" multiline placeholder="Title"
-              onChange={(e) => setTitle(e.target.value)} 
-              inputProps={{'aria-label': 'Title'}} />
-            {/* <BrushOutlinedIcon/> */}
+              onChange={(e) => setTitle(e.target.value)} inputProps={{'aria-label': 'Title'}} />
             <img style={{"width":"25px"}} src={pin}></img>
             <InputBase fullWidth onChange={(e)=>setNote(e.target.value)}  multiline defaultValue="" placeholder="Take a Note "/>
        
           </div>
-         
+          
           <div>          
             <div className="">
               <div className="closeBtn"> 
@@ -109,7 +126,11 @@ export default function Addnote(props) {
              </div>
            </div>          
         </div>        
-        <div className="icons"> <Reminder/><Color/><Image/><Archive/><MenuPopper/><Undo/><Redo/></div>
+        <div className="icons"> 
+            {/* <Icon/> */}
+        <Reminder/><Color  /><Image/><Archive/><MenuPopper/>
+
+        <Undo/><Redo/></div>
       </>
      }
      {/* <GetNotes/> */}

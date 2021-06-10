@@ -22,34 +22,29 @@ export default class NotesService{
     }
 
     updateNotes(data,token){
-        console.log("Get UpdateNotes Service")
-        // console.log(data);
+        console.log("UpdateNotes Service")
+        console.log(data);
         return axios.postMethod(baseUrl+"notes/updateNotes",data, {
             headers: {'Authorization': token}
         });
     }
     
-    colorChange = (data, token) => {
+    
+    colorChange(data, token){
+        console.log("Colorchange Service",data)
         return axios.postMethod(baseUrl+"notes/changesColorNotes", data, {
             headers: {'Authorization':token}
         })
     }
 
-    archiveNote = (data, token) => {
+   
+
+    archiveNote(data, token){
         return axios.postMethod(baseUrl+"notes/archiveNotes", data, {
             headers:{
                 'Authorization':token,
             }
         })
     }
-    
-    // getArchiveNote = (token) => {
-    //     return axios.getMethod(`${this.baseUrl}notes/getArchiveNotesList`, {
-    //         headers: {'Authorization': token}
-    //     })
-    // }
-
-   
-
     
 }

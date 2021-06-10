@@ -13,12 +13,12 @@ export default function Archive(){
         setanchorEl(event.currentTarget)
     };
 
-    console.log("Reminder", anchorEl);
+    // console.log("Reminder", anchorEl);
     const id = open ? 'simple-popper' : undefined;
 
     return(
         <div>
-            <div onClick={e=>handleClick(e)}> <IconButton className="icon-place" color="inherit"  edge="start"><ArchiveOutlinedIcon style={{"width":"21px"}} className=""></ArchiveOutlinedIcon></IconButton></div>
+            <div onClick={e=>handleClick(e)}> <IconButton className="icon-place" color="inherit"  edge="start"><ArchiveOutlinedIcon style={{"width":"18px"}}  className="icon-place"></ArchiveOutlinedIcon></IconButton></div>
             <Popper  id={id} onClick={e=>handleClick(e)} open={open} anchorEl={anchorEl}>
                
              </Popper>

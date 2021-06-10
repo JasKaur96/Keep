@@ -7,7 +7,8 @@ export default class AxiosService{
     }
 
     postMethod = (url, data,isHeaderRequired = false) => {
-        console.log("Axios Service")
+        console.log("Axios Service",data);
+        console.log();
         return axios.post(url,data, isHeaderRequired)
     }
 }

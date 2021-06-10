@@ -11,12 +11,12 @@ export default function Reminder(){
         setanchorEl(event.currentTarget)
     };
 
-    console.log("Reminder", anchorEl);
+    // console.log("Reminder", anchorEl);
     const id = open ? 'simple-popper' : undefined;
 
     return( 
         <div>
-            <div onClick={e=>handleClick(e)}><IconButton  className="" color="inherit"  edge="start">  <img style={{"width":"21px"}}  src={bell}></img></IconButton></div>
+            <div onClick={e=>handleClick(e)}><IconButton color="inherit"  edge="start">  <img   className="" style={{"width":"18px"}}  src={bell}></img></IconButton></div>
             <Popper position="bottom-end"  id={id} onClick={e=>handleClick(e)} open={open} anchorEl={anchorEl}>
                 <div  className="reminder-popper">
                     <div className="reminder-data">

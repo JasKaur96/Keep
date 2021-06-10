@@ -47,7 +47,6 @@ export default function GetNotes(props) {
 
   useEffect(() => {
    getNote();
-
   },[]);
 
   const getNote = ()=>{
@@ -58,6 +57,7 @@ export default function GetNotes(props) {
       let array = arrayData.reverse();
       setNote(array);
       // setNote({note:result.data.data.data})
+      console.log(arrayData,"Arrayyy")
       console.log(note);
     })
     .catch(err=>{

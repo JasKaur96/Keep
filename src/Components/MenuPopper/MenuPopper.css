@@ -16,7 +16,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    margin-left: -2px;
+    /* margin-left: -2px; */
     padding: 1px;
 }
 .menu-data:hover{
@@ -28,6 +28,9 @@
     height:25px; 
     background-color:rgb(236, 236, 236);
     
+}
+.icone-circle{
+
 }
 /* .menu-data:focus{
     margin-left: -5px;
