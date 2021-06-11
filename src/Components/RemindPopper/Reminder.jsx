@@ -16,7 +16,7 @@ export default function Reminder(){
 
     return( 
         <div>
-            <div onClick={e=>handleClick(e)}><IconButton color="inherit"  edge="start">  <img   className="" style={{"width":"18px"}}  src={bell}></img></IconButton></div>
+            <div onClick={e=>handleClick(e)}><IconButton color="inherit"  edge="start">  <img   className="reminder" style={{"width":"18px"}}  src={bell}></img></IconButton></div>
             <Popper position="bottom-end"  id={id} onClick={e=>handleClick(e)} open={open} anchorEl={anchorEl}>
                 <div  className="reminder-popper">
                     <div className="reminder-data">

@@ -39,6 +39,29 @@ export default class NotesService{
         })
     }
 
+    deleteNote = (data, token) => {
+        return axios.postMethod(baseUrl+"notes/trashNotes", data, {
+            headers: {
+                'Authorization':token,
+            }
+        }) 
+    }
+
+    getDeleteNote = (token) => {
+        return axios.getMethod(baseUrl+"notes/getTrashNotesList", {
+            headers: {
+                'Authorization':token,
+            }
+        })
+    }
+
+    deleteForever = (data, token) => {
+        return axios.postMethod(baseUrl+"notes/deleteForeverNotes", data, {
+            headers: {
+                'Authorization':token,
+            }
+        })
+    }
    
 
     archiveNote(data, token){

@@ -52,7 +52,8 @@ export default function Addnote(props) {
   const [open,setOpen] = React.useState(false);
   var [title, setTitle] = React.useState();
   var [note, setNote] = React.useState();  
-  var [clr, setColor] = React.useState();
+  var [clr, setColor] = React.useState();  
+  var [id, setNoteId] = React.useState();
   const click =()=>{
     setOpen(!open);
   }
@@ -62,7 +63,8 @@ export default function Addnote(props) {
     let data = {
       title: title,
       description: note,
-      color:clr
+      color:clr,
+      id:id
     }
 
     click();
@@ -114,7 +116,7 @@ export default function Addnote(props) {
         </div>        
         <div className="icons"> 
             {/* <Icon/> */}
-        <Reminder/><Color  /><Image/><Archive/><MenuPopper/>
+        <Reminder/><Color onChange={(e)=>setNoteId(e.target.value)} setClr={setColor} /><Image/><Archive/><MenuPopper/>
 
         <Undo/><Redo/></div>
       </>

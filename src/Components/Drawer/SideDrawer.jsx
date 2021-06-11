@@ -48,6 +48,18 @@ const useStyles = makeStyles((theme) => ({
     color: 'grey',
     borderRadius: '0 25px 25px 0',
   
+  },
+
+  newListItems:{
+    letterSpacing: '.01785714em',
+    fontFamily: 'Google Sans, Roboto, Arial, sans-serif',
+    fontSize: '.875rem',
+    fontWeight:'500',
+    lineHeight:'1.25rem',
+    paddingleft: '24px',
+    color: 'grey',
+    borderRadius: '0 25px 25px 0',
+  
   '&:focus':{
     backgroundColor: '#feefc3',
     borderRadius: '0 25px 25px 0',
@@ -65,7 +77,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SideDrawer(props){
   const classes = useStyles();
-  // const [open, setOpen] = React.useState(false);
+  // const [head, setTitle] = React.useState("");
 
   const handleDrawerOpen = () => {
     // setOpen(!open);
@@ -78,13 +90,13 @@ export default function SideDrawer(props){
     console.log("drawerclose drawer")
   };
  
-  // const handleDrawerOpenClose = () => {
-  //   console.log("Click drawer")
-  //   // props.drawerOpenClose()
-  //   setOpen(!open);
+  // const sendName =(head)=>{
+  //   props.nameChange(head)
+  //   console.log("Header",head)
   // };
       return(
         <div className={classes.root}>
+       
         <CssBaseline />
         <Drawer onMouseOver={handleDrawerOpen} onMouseLeave={handleDrawerClose} variant="permanent" className={clsx(classes.drawer, {
             [classes.drawerOpen]: props.open,
@@ -94,14 +106,15 @@ export default function SideDrawer(props){
           }}
         >
           
-            <ListItem button key={'Notes'} className={classes.listItems} >
-            
+            <ListItem button  className={props.selected == "Keep" ? classes.newListItems : classes.listItems} 
+                // onClick={()=>sendName("Keep")}
+            >           
               <ListItemIcon > <IconButton  edge="start">  <img src={bulb} ></img></IconButton></ListItemIcon>
               <ListItemText primary={'Notes'}/>
             </ListItem>
-            <ListItem button key={'Remainders'} className={classes.listItems}>
+            <ListItem button key={'Reminders'} className={classes.listItems}>
               <ListItemIcon><IconButton  edge="start"> <img src={bell}></img></IconButton></ListItemIcon>
-              <ListItemText primary={'Remainders'}/>
+              <ListItemText primary={'Reminders'}/>
             </ListItem>
             <ListItem button key={'Editlabels'} className={classes.listItems} >
               <ListItemIcon><IconButton  edge="start"> <img src={edit}></img></IconButton> </ListItemIcon>

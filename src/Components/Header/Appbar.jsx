@@ -125,6 +125,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Appbar(props){
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
+    const [heading, setHeader] =React.useState("Keep")
 
     const handleDrawerOpen = () => {
       setOpen(true);
@@ -142,6 +143,17 @@ export default function Appbar(props){
    const handleToggle = () => {
       console.log("open");
   }
+
+  // const setHead =(head)=>{
+  //   setHeader(heading.head);
+  //   props.onChange(head);
+  // }
+
+  const changeName = (head) =>{
+    setHeader({heading:head})
+    props.rout(head);
+    // onChange(head)
+  }
     return(
         <div className="header">
            
@@ -149,13 +161,14 @@ export default function Appbar(props){
                 <Toolbar>
                     <IconButton onClick={handleDrawerOpenClose} 
                     className={clsx(classes.menuButton, {[classes.menuButton]: open, [classes.hide]: !open,
+                     
                       })} 
                       color="inherit" edge="start">                           
                         <MenuIcon/>
                     </IconButton>
                     <img className="imgKeep" src="https://www.gstatic.com/images/branding/product/1x/keep_2020q4_48dp.png" alt="" ></img>
                     <Typography variant="h6" >
-                        <span>Keep</span>
+                        <span>{heading}</span>
                     </Typography>
                     
                     <div className="search">
@@ -188,6 +201,8 @@ export default function Appbar(props){
               drawerOpen={handleDrawerOpen} 
               drawerClose={handleDrawerClose} 
               drawerOpenClose={handleDrawerOpenClose} 
+              nameChange={changeName} 
+              selected={heading}
             />
           
         </div>

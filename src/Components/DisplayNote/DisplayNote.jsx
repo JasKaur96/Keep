@@ -10,7 +10,7 @@ import pin from "../../Assets/pin.jpeg";
 import AddNote from "../Notes/Addnote";
 import Typography from '@material-ui/core/Typography';
 import Reminder from "../RemindPopper/Reminder";
-import GetNotes from "../GetNotes/GetNotes";
+import Card from "../Card/Card";
 import MenuPopper from "../MenuPopper/MenuPopper";
 import Archive from "../ArchivePopper/ArchivePopper";
 import Image from "../ImagePopper/Image";
@@ -51,9 +51,9 @@ export default function DisplayNote(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   var [title, setTitle] = React.useState("");
-  var [description, setDescription] = React.useState("");
+  // var [description, setDescription] = React.useState("");
   var [note1, setNote] = React.useState("");
-  var [clr, setClr] = React.useState("");
+  var [clr, setColor] = React.useState("");
   const [id, setNoteId] = React.useState();
 
 
@@ -61,7 +61,7 @@ export default function DisplayNote(props) {
     e.stopPropagation();
     setTitle(data.title);
     setNote(data.description);
-    setClr(data.color);
+    setColor(data.color);
     setNoteId(data.id);
     setOpen(true);
   };
@@ -84,20 +84,20 @@ export default function DisplayNote(props) {
     setOpen(!open);
   }
 
-const update = () =>{
-  
+const update = (e) =>{
+  e.stopPropagation();
   let data = {
     title: title,
     description: note1,
-    id:id
-    // color:clr
+    id:id,
+    color:clr
   }
   var requestData = new FormData();
   requestData.append("noteId", id);
   // requestData.set("file", state.file);
   requestData.append("title", title);
   requestData.append("description", note1);
-
+  requestData.append("color", clr);
 
   var formData = new FormData();
 
@@ -117,7 +117,7 @@ const update = () =>{
     let token = localStorage.getItem('Token');
     console.log(requestData);
     service.updateNotes(requestData,token).then((data) => {
-      // props.getNote();
+      props.getNote();
       // props.updateNote();
       console.log(data);
     })
@@ -128,17 +128,28 @@ const update = () =>{
 
   click();
 }
-const setColor = (color) => {
-  setClr({color: color})
-}
+// setColor = (color) => {
+//   setColor({color: color})
+// }
 
-// console.log("Props Notes:",props.notes)
+console.log("Props Notes:",props.notes)
 return ( <>
         <div className="display-note">
-            {props.notes.map((data) => {
-                var style = {backgroundColor : data.color}
-                return (
-                    <div>
+            {/* {props.notes.map((data) => { */}
+              {/* var style = {backgroundColor : data.color} */}
+              {/* console.log("value Color",data) */}
+                <>
+                  {props.notes.filter((data) => data.isDeleted === false).filter((data) => data.isArchived === false).reverse().map((value)=>{
+                    var style = {backgroundColor : value.color} 
+                    {/* console.log("value Color",value) */}
+                    return(
+                      <Card value={value} style={style} />
+                    )
+                  } 
+                  
+                  )}
+                  
+                    {/* <div>
                       <div className="note" style={style}>
                           <div onClick={(e) => handleClickOpen(e, data)}>  
                               <div className="pin"> 
@@ -147,16 +158,14 @@ return ( <>
                                </div>                            
                             
                           </div>   
-                          <div  className="icons-below"> <Reminder/><Color setColor={setColor}/><Image/><Archive/><MenuPopper/></div>
-                          {/* <div className="closeBtn"> 
-                              <button className="close-btn" type="button" value="Close" placeholder="Close">Close</button>
-                          </div>  */}
+                          <div  className="icons-below"> <Reminder/><Color notes={data} setClr={setColor} /><Image/><Archive/><MenuPopper/></div>
                       </div>                    
-                    <div>                                           
-                  </div>        
-              </div>  
-              )
-            })}
+                      <div>                                           
+                    </div>        
+                  </div>   */}
+                  </>
+             
+            {/* })} */}
         </div>
 
     <Dialog open={open} onClose={handleClose}  aria-labelledby="form-dialog-title">
@@ -169,7 +178,7 @@ return ( <>
                </div>                                 
                <InputBase fullWidth onChange={(e)=>setNote(e.target.value)}  multiline value={note1} />
             </div>   
-            <div  className="icons-below"> <Reminder/><Color setColor={setColor}/><Image/><Archive/><MenuPopper/></div>
+            <div  className="icons-below"> <Reminder/><Color notes={(e)=>setNote(e.target.value)} setClr={setColor}/><Image/><Archive/><MenuPopper/></div>
               <div className="closebtn"> 
                 <button className="close-Btn" type="button" onClick={(e)=> update(e)}  value="Close" placeholder="Close">Close</button>
               </div> 

@@ -67,7 +67,7 @@ export default function GetNotes(props) {
 
   return (
             <div>
-                <Addnote getNote={getNote}/>
+                <Addnote getNote={getNote} notes={note}/>
                 <DisplayNote getNote={getNote} notes={note}/>
             </div>
   );

@@ -4,6 +4,7 @@ import React, { Component } from 'react'
 import {makeStyles, withStyles} from '@material-ui/core'
 import Addnote from "../../Components/Notes/Addnote";
 import GetNotes from "../../Components/GetNotes/GetNotes";
+import Reminder from "../../Components/RemindPopper/Reminder";
 
 const drawerWidth = 230;
 
@@ -122,7 +123,8 @@ class Dashboard extends Component{
         super(props);
           this.state ={
             open: false,
-            profile: false
+            profile: false,
+            selectedRout:'notes'
           }
       }
     
@@ -142,24 +144,47 @@ class Dashboard extends Component{
         console.log("profile button");
         this.setState({ profile: !this.state.profile })  
       }
-      // const handleDrawerOpenClose = () => {
-      //   console.log("Click drawer")
-      //   // props.drawerOpenClose()
-      //   setOpen(!open);
-      // };
-      change = () => {
+     
+    change = () => {
         this.setState({ open: !this.state.open });
     };
+  
+  setRout = (data) => {
+      this.setState({selectedRout:data})
+      console.log(data);
+  }
 
+  rendering =() => {
+      if(this.state.selected == 'notes'){
+        console.log("render inside")
+          return <GetNotes/>
+      }
+      // else if (this.state.selectedRout == 'Archive'){
+      //     return <Archive/>
+      // }
+      // else if (this.state.selectedRout == 'Trash'){
+      //     return <Trash/>
+      // }
+      else{
+          return <GetNotes/>
+      }
+  }
+
+    
     render(){
         const {classes} = this.props;
         console.log(this.state.open)
         return(
             <div>
-                <Appbar/>
-                {/* <SideDrawer/> */}
-                {/* <Addnote/> */}
-                <GetNotes/>
+                <Appbar rout={this.setRout}/>
+                {this.selectedRout}
+                <div>
+                  {this.rendering()}                  
+                </div>
+                {/* {this.rendering} */}
+
+                {/* <GetNotes/> */}
+
             </div>
         )}
 }
