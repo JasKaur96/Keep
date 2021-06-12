@@ -65,6 +65,7 @@ export default class NotesService{
    
 
     archiveNote(data, token){
+        console.log("Archived Service.",data)
         return axios.postMethod(baseUrl+"notes/archiveNotes", data, {
             headers:{
                 'Authorization':token,

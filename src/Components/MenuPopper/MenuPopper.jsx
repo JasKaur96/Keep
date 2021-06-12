@@ -22,8 +22,7 @@ export default function MenuPopper(props){
     }
 
     const deleteNote = (e,value)=>{
-        e.stopPropagation();
-
+       
         let token = localStorage.getItem("Token");
 
         let data = {
