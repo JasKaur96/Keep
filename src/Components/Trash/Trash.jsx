@@ -13,38 +13,38 @@ import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import RestoreFromTrashIcon from '@material-ui/icons/RestoreFromTrash';
 const service = new Services();
 
-const useStyles = makeStyles((theme) => ({
-  titleInput: {
-    padding: "10px 15px",
-    fontSize: "1rem",
-    fontWeight: "550",
-    lineHeight: "1.5rem",
-    color: "#211a1a",
-    width: "100%"
-  },
+// const useStyles = makeStyles((theme) => ({
+//   titleInput: {
+//     padding: "10px 15px",
+//     fontSize: "1rem",
+//     fontWeight: "550",
+//     lineHeight: "1.5rem",
+//     color: "#211a1a",
+//     width: "100%"
+//   },
 
-  input: {
-    fontSize: "15px",
-    fontWeight: "550",
-  },
+//   input: {
+//     fontSize: "15px",
+//     fontWeight: "550",
+//   },
 
-  noteInput: {
-    padding: "10px 15px",
-  },
+//   noteInput: {
+//     padding: "10px 15px",
+//   },
 
-  closeNotes: {
-    padding: '10px 10px 10px 10px',
-    fontSize: '15px',
-    justifySelf: "flex-end",
-    fontFamily: 'Google Sans ,Roboto,Arial,sans-serif',
-    cursor: 'pointer',
-  }
+//   closeNotes: {
+//     padding: '10px 10px 10px 10px',
+//     fontSize: '15px',
+//     justifySelf: "flex-end",
+//     fontFamily: 'Google Sans ,Roboto,Arial,sans-serif',
+//     cursor: 'pointer',
+//   }
 
-}));
+// }));
 
 export default function Trash(props) {
    
-  const classes = useStyles();
+  // const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   var [title, setTitle] = React.useState("");
   // var [description, setDescription] = React.useState("");

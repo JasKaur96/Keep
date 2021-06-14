@@ -140,16 +140,13 @@ export default function Appbar(props){
       console.log("Click drawer app", !open)
       setOpen(!open);
     };
-   const handleToggle = () => {
+    const handleToggle = () => {
       console.log("open");
-  }
- const change = () => {
-    setOpen({ open: !open });
-};
-  // const setHead =(head)=>{
-  //   setHeader(heading.head);
-  //   props.onChange(head);
-  // }
+    }
+    const change = () => {
+        setOpen({ open: !open });
+    };
+  
 const headerSet =(head)=>{
   heading=[head]
 }
@@ -181,10 +178,7 @@ const headerSet =(head)=>{
                         <SearchIcon /></IconButton>
                         <input type="text" placeholder="Search" />
                     </div>
-                    {/* <div  className="profilepic">
-                        <Avatar alt="" />
-                    </div> */}
-                     
+                    
                     <div className="icon"></div>
                     <IconButton color="inherit"  edge="start">  
                         <RefreshIcon /></IconButton>
