@@ -99,15 +99,8 @@ const update = (e) =>{
   requestData.append("description", note1);
   requestData.append("color", clr);
 
-  var formData = new FormData();
-
-  formData.append("username", "Groucho");
-  formData.append("accountnum", 123456); 
-
-// console.log("title",title);
-// console.log("description",note1);
   console.log("description",id);
-  console.log("Formdata",formData);
+  // console.log("Formdata",formData);
 
 
   if(data.title === '' || data.description === ''){
@@ -128,9 +121,6 @@ const update = (e) =>{
 
   click();
 }
-// setColor = (color) => {
-//   setColor({color: color})
-// }
 
 console.log("Props Notes:",props.notes)
 return ( <>
@@ -142,30 +132,12 @@ return ( <>
                   {props.notes.filter((data) => data.isDeleted === false).filter((data) => data.isArchived === false).reverse().map((value)=>{
                     var style = {backgroundColor : value.color} 
                     {/* console.log("value Color",value) */}
-                    return(
-                      <Card value={value} style={style} />
-                    )
-                  } 
-                  
-                  )}
-                  
-                    {/* <div>
-                      <div className="note" style={style}>
-                          <div onClick={(e) => handleClickOpen(e, data)}>  
-                              <div className="pin"> 
-                                  <p>{data.title}<br></br>{data.description} </p>
-                                  <img style={{"width":"25px"}} src={pin}></img>      
-                               </div>                            
-                            
-                          </div>   
-                          <div  className="icons-below"> <Reminder/><Color notes={data} setClr={setColor} /><Image/><Archive/><MenuPopper/></div>
-                      </div>                    
-                      <div>                                           
-                    </div>        
-                  </div>   */}
-                  </>
-             
-            {/* })} */}
+                      return(
+                        <Card value={value} style={style} />
+                    )}                   
+                  )}             
+                </>
+      
         </div>
 
     <Dialog open={open} onClose={handleClose}  aria-labelledby="form-dialog-title">

@@ -5,6 +5,8 @@ import {makeStyles, withStyles} from '@material-ui/core'
 import Addnote from "../../Components/Notes/Addnote";
 import GetNotes from "../../Components/GetNotes/GetNotes";
 import Reminder from "../../Components/RemindPopper/Reminder";
+import Trash from "../../Components/Trash/Trash";
+import Archive from "../../Components/Archive/Archive";
 
 const drawerWidth = 230;
 
@@ -148,6 +150,10 @@ class Dashboard extends Component{
     change = () => {
         this.setState({ open: !this.state.open });
     };
+
+    notes = (value) => {
+      this.setState({selectedRout:value})
+  }
   
   setRout = (data) => {
       this.setState({selectedRout:data})
@@ -155,35 +161,41 @@ class Dashboard extends Component{
   }
 
   rendering =() => {
-      if(this.state.selected == 'notes'){
+    console.log("render inside")
+      if(this.state.selectedRout == 'notes'){
         console.log("render inside")
           return <GetNotes/>
+      }else if (this.state.selectedRout == 'Reminder'){
+        return <Reminder/>
       }
-      // else if (this.state.selectedRout == 'Archive'){
-      //     return <Archive/>
-      // }
-      // else if (this.state.selectedRout == 'Trash'){
-      //     return <Trash/>
-      // }
+      else if (this.state.selectedRout == 'Archive'){
+        
+        console.log("render inside archive",this.state.selectedRout)
+          return <Archive/>
+      }
+      else if (this.state.selectedRout == 'Trash'){
+        console.log("render inside",this.state.selectedRout)
+        return <Trash/>
+      }
       else{
           return <GetNotes/>
       }
   }
-
+ 
     
     render(){
-        const {classes} = this.props;
-        console.log(this.state.open)
+        // const {classes} = this.props;
+        // console.log(this.props)
         return(
             <div>
                 <Appbar rout={this.setRout}/>
-                {this.selectedRout}
+                {this.state.selectedRout}
                 <div>
                   {this.rendering()}                  
                 </div>
                 {/* {this.rendering} */}
 
-                {/* <GetNotes/> */}
+              
 
             </div>
         )}

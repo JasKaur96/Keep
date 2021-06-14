@@ -40,6 +40,7 @@ export default class NotesService{
     }
 
     deleteNote = (data, token) => {
+     
         return axios.postMethod(baseUrl+"notes/trashNotes", data, {
             headers: {
                 'Authorization':token,
@@ -56,6 +57,7 @@ export default class NotesService{
     }
 
     deleteForever = (data, token) => {
+        console.log("Deleted forever")
         return axios.postMethod(baseUrl+"notes/deleteForeverNotes", data, {
             headers: {
                 'Authorization':token,
@@ -72,5 +74,14 @@ export default class NotesService{
             }
         })
     }
+
+    getArchiveNote(token){
+        console.log("Archived Service.")
+        return axios.getMethod(baseUrl+"notes/getArchiveNotesList", {
+            headers:{
+                'Authorization':token,
+            }
+        })
+    } 
     
 }

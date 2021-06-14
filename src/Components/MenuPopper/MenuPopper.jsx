@@ -29,7 +29,6 @@ export default function MenuPopper(props){
             isDeleted: true,
             noteIdList:[value.id],
         }
-
         
         console.log(value.id);
         console.log("Props",data)
@@ -48,16 +47,18 @@ export default function MenuPopper(props){
     return(
         <div>
             <div onClick={e=>handleClick(e)}>
-            <IconButton className="icone-circle" color="inherit"  edge="start">  <MoreVertIcon className="icon-place"  style={{"width":"21px"}}></MoreVertIcon></IconButton>
+                <IconButton className="icone-circle" color="inherit"  edge="start">
+                    <MoreVertIcon className="icon-place"  style={{"width":"21px"}}></MoreVertIcon>
+                </IconButton>
             </div>
             <Popper  id={id} onClick={e=>handleClick(e)} open={open} anchorEl={anchorEl}>
-                <div  className="menu-popper">
-                <div className="">
-                <div  className="menu-data" onClick={(e)=>deleteNote(e, props.notes)} >Delete Note</div>
-                <div  className="menu-data">Add Label</div>
-                 <div  className="menu-data">  Add drawing  </div> 
-                 <div  className="menu-data">Make a Copy</div> 
-                 <div  className="menu-data">   Show Checkboxes</div>
+                <div className="menu-popper">
+                    <div className="">
+                        <div className="menu-data" onClick={(e)=>deleteNote(e, props.notes)} >Delete Note</div>
+                        <div className="menu-data">Add Label</div>
+                        <div className="menu-data">Add drawing  </div> 
+                        <div className="menu-data">Make a Copy</div> 
+                        <div className="menu-data">Show Checkboxes</div>
                     </div>
                 </div>
              </Popper>

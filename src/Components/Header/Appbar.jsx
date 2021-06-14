@@ -143,17 +143,22 @@ export default function Appbar(props){
    const handleToggle = () => {
       console.log("open");
   }
-
+ const change = () => {
+    setOpen({ open: !open });
+};
   // const setHead =(head)=>{
   //   setHeader(heading.head);
   //   props.onChange(head);
   // }
-
+const headerSet =(head)=>{
+  heading=[head]
+}
   const changeName = (head) =>{
-    setHeader({heading:head})
+    setHeader(head)
     props.rout(head);
     // onChange(head)
   }
+  console.log("Header AppBar",heading)
     return(
         <div className="header">
            

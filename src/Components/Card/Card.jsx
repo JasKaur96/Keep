@@ -69,16 +69,9 @@ export default function Card(props) {
                 </div>                 
             </div>   
            
-             {/* <Icon Notes={props.data}/> */}
-             <div  className="icons-below"><Reminder/><Color notes={props.value} setClr={setColor} />
-
-              <Image/><Archive notes={props.value}/><MenuPopper notes={props.value}/>
-             
-                    
+            <div  className="icons-below"><Reminder/><Color notes={props.value} setClr={setColor} />
+              <Image/><Archive notes={props.value}/><MenuPopper notes={props.value}/>                    
             </div>
-            {/* <div className="closeBtn"> 
-                <button className="close-btn" type="button" value="Close" placeholder="Close">Close</button>
-            </div>  */}
          </div>                    
          </div>
         </>       

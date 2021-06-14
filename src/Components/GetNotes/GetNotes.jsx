@@ -56,7 +56,7 @@ export default function GetNotes(props) {
       let arrayData = result.data.data.data;
       let array = arrayData.reverse();
       setNote(array);
-      // setNote({note:result.data.data.data})
+      // setNote({note:result.data.data.data}) 
       console.log(arrayData,"Arrayyy")
       console.log(note);
     })

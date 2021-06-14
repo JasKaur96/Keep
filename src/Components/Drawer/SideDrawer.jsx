@@ -77,7 +77,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SideDrawer(props){
   const classes = useStyles();
-  // const [head, setTitle] = React.useState("");
+  const [head, setTitle] = React.useState("");  
+  const [open, setOpen] = React.useState("");
+
 
   const handleDrawerOpen = () => {
     // setOpen(!open);
@@ -89,11 +91,14 @@ export default function SideDrawer(props){
     props.drawerClose()
     console.log("drawerclose drawer")
   };
- 
-  // const sendName =(head)=>{
-  //   props.nameChange(head)
-  //   console.log("Header",head)
-  // };
+  const change = () => {
+    setOpen({ open: !open });
+};
+  const sendName =(head)=>{
+    props.nameChange(head)
+    console.log("Header",head)
+  };
+
       return(
         <div className={classes.root}>
        
@@ -104,28 +109,33 @@ export default function SideDrawer(props){
           })}
           classes={{ paper: clsx({ [classes.drawerOpen]: props.open, [classes.drawerClose]: !props.open,}),
           }}
+          open={props.open}
         >
           
             <ListItem button  className={props.selected == "Keep" ? classes.newListItems : classes.listItems} 
-                // onClick={()=>sendName("Keep")}
+                onClick={()=>sendName("Keep")}
             >           
               <ListItemIcon > <IconButton  edge="start">  <img src={bulb} ></img></IconButton></ListItemIcon>
               <ListItemText primary={'Notes'}/>
             </ListItem>
-            <ListItem button key={'Reminders'} className={classes.listItems}>
+            <ListItem button key={'Reminders'}  className={props.selected == "Reminder" ? classes.newListItems : classes.listItems} 
+                onClick={()=>sendName("Reminder")}>
               <ListItemIcon><IconButton  edge="start"> <img src={bell}></img></IconButton></ListItemIcon>
               <ListItemText primary={'Reminders'}/>
             </ListItem>
-            <ListItem button key={'Editlabels'} className={classes.listItems} >
+            <ListItem button key={'Editlabels'}  className={props.selected == "Edit" ? classes.newListItems : classes.listItems} 
+                onClick={()=>sendName("Edit")} >
               <ListItemIcon><IconButton  edge="start"> <img src={edit}></img></IconButton> </ListItemIcon>
-              <ListItemText primary={'Edit labels'}/>
+               <ListItemText primary={'Edit labels'}/>
             </ListItem>
-            <ListItem button key={'Archive'} className={classes.listItems}>
+            <ListItem button key={'Archive'}  className={props.selected == "Archive" ? classes.newListItems : classes.listItems} 
+                onClick={()=>sendName("Archive")}>
               <ListItemIcon><IconButton edge="start"> <img src={archive}></img></IconButton>
               </ListItemIcon>
               <ListItemText primary={'Archive'}/>
             </ListItem>
-            <ListItem button key={'Trash'} className={classes.listItems}>
+            <ListItem button key={'Trash'}  className={props.selected == "Trash" ? classes.newListItems : classes.listItems} 
+                onClick={()=>sendName("Trash")}>
               <ListItemIcon><IconButton  edge="start"> <img src={trash}></img></IconButton></ListItemIcon>
               <ListItemText primary={'Trash'}/>
             </ListItem>
