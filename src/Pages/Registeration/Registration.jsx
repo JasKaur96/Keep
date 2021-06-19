@@ -157,7 +157,7 @@ export default class Registration extends Component {
         }else{
             
             this.setState({snackmsg: "Please Enter valid data."});
-        }
+        } 
 
     }
     render(){

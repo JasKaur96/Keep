@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
 
   input: {
     fontSize: "15px",
-    fontWeight: "550",
+    fontWeight: "550", 
   },
 
   noteInput: {
@@ -124,7 +124,7 @@ console.log("Props Notes:",note)
 
 return ( <>
         <div className="display-note">
-          {note.filter((data) => data.isDeleted === true).filter((data) => data.isArchived === false).reverse().map((value)=>{
+          {/* {note.filter((data) => data.isDeleted === true).filter((data) => data.isArchived === false).reverse().map((value)=>{
               var style = {backgroundColor : value.color} 
               console.log("value Color",value)
               return(
@@ -143,7 +143,9 @@ return ( <>
             </div>   
             </div>
             )}                   
-          )}
+          )} */}
+
+            {props.render(note)}
         </div>
 
   </>

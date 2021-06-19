@@ -4,9 +4,9 @@
     /* border-radius: 8px;
     border:1px solid #dadce0;
     box-shadow: 0 10px 25px rgba(92,99,105,.2); */
-    margin-left: 480px;
+    margin-left: 240px;
     margin-top: 20px;
-    position: relative;
+    /* position: relative; */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -15,7 +15,7 @@
     /* background-color: white; */
 }
 
-.closeBtn{
+.closeBtn{ 
     display: flex;
     flex-direction: row;
     justify-content: flex-end;

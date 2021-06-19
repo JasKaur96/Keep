@@ -87,7 +87,7 @@ export default class Login extends Component {
                 localStorage.setItem('userDetails', JSON.stringify(result.data))
                
                 this.setState({ snackmsg: "login successfull" })
-                this.props.history.push('/dashboard');
+                this.props.history.push('/dashboard')
             }).catch((error) => {
                 console.log(error);
                 this.setState({ snackmsg: "login error" })
@@ -109,6 +109,7 @@ handleClose = (reason) =>{
 
 
     render() {
+        console.log("props Login",this.props.history)
         return (
             <>
                 <div className="login-main">

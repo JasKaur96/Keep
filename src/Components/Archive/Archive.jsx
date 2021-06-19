@@ -65,14 +65,14 @@ const getArchivedNote = ()=>{
 
     service.getArchiveNote(token).then((result) => {
         console.log(result);
-    
+
         let arrayData = result.data.data.data;
         let array = arrayData.reverse();
       
         console.log(arrayData,"Arrayyy")
         console.log(array,"Array")
         setNote(array);
-        console.log("Result getArchivedNOte",result.data.data.data);
+        console.log("Result getArchivedNOte",result.data.data.data); 
     })
     .catch((error) => {
         console.log(error);
@@ -83,16 +83,21 @@ console.log("Props Notes:",note)
 
 return ( <>
         <div className="display-note">
-          {note.filter((data) => data.isDeleted === false).filter((data) => data.isArchived === true).reverse().map((value)=>{
-              var style = {backgroundColor : value.color} 
-              console.log("value Color",value)
-              return(
-              <Card value={value} style={style}/>
-            )}                   
-          )}
+          {/* {note.filter((data) => data.isArchived === true).reverse().map((value)=>{
+            <div>{props.render(note)}</div>
+          }
+          )} */}
+
+          {props.render(note)}
         </div>
 
   </>
 )
 }
 
+  {/* var style = {backgroundColor : value.color} 
+              console.log("value Color",value)
+              return(
+              <Card value={value} style={style} getArchivedNote={getArchivedNote}/>
+            
+            )}                    */}

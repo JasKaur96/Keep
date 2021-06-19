@@ -4,9 +4,10 @@ import React, { Component } from 'react'
 import {makeStyles, withStyles} from '@material-ui/core'
 import Addnote from "../../Components/Notes/Addnote";
 import GetNotes from "../../Components/GetNotes/GetNotes";
-import Reminder from "../../Components/RemindPopper/Reminder";
+import Reminder from "../../Components/ReminderNav/ReminderNav";
 import Trash from "../../Components/Trash/Trash";
 import Archive from "../../Components/Archive/Archive";
+import MapData from "../../Components/MapData/MapData";
 
 const drawerWidth = 230;
 
@@ -160,25 +161,30 @@ class Dashboard extends Component{
       console.log(data);
   }
 
+  displayRenderData =(data)=>{
+    return <MapData note={data}/>
+  }
+
   rendering =() => {
     console.log("render inside")
       if(this.state.selectedRout == 'notes'){
         console.log("render inside")
-          return <GetNotes/>
+        return <GetNotes render = {this.displayRenderData}/>
+
       }else if (this.state.selectedRout == 'Reminder'){
-        return <Reminder/>
+        return <Reminder render = { data => <MapData note={data}/>}/>
       }
       else if (this.state.selectedRout == 'Archive'){
         
         console.log("render inside archive",this.state.selectedRout)
-          return <Archive/>
+        return <Archive render = { data => <MapData note={data}/>}/>
       }
       else if (this.state.selectedRout == 'Trash'){
         console.log("render inside",this.state.selectedRout)
-        return <Trash/>
+        return <Trash  render = { data => <MapData note={data}/>}/>
       }
       else{
-          return <GetNotes/>
+        return <GetNotes render = { data => <MapData note={data}/>}/>
       }
   }
  
@@ -193,10 +199,6 @@ class Dashboard extends Component{
                 <div>
                   {this.rendering()}                  
                 </div>
-                {/* {this.rendering} */}
-
-              
-
             </div>
         )}
 }

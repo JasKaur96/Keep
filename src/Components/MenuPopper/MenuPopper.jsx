@@ -1,5 +1,7 @@
-import { IconButton, Menu, Popper } from "@material-ui/core";
+import { IconButton, Menu, Popper, Snackbar } from "@material-ui/core";
 import React from "react";
+import CloseIcon from '@material-ui/icons/Close';
+import { Button } from "@material-ui/core";
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 // import "../../Components/RemindPopper/Reminder.css"
 import "./MenuPopper.css"
@@ -34,8 +36,9 @@ export default function MenuPopper(props){
         console.log("Props",data)
 
         service.deleteNote(data,token).then((result) => {
-            console.log(result);           
-            window.location.reload();
+            console.log(result);        
+            props.getNote();   
+            // window.location.reload();
 
         }).catch((error) => {
             console.log(error);
@@ -54,14 +57,29 @@ export default function MenuPopper(props){
             <Popper  id={id} onClick={e=>handleClick(e)} open={open} anchorEl={anchorEl}>
                 <div className="menu-popper">
                     <div className="">
-                        <div className="menu-data" onClick={(e)=>deleteNote(e, props.notes)} >Delete Note</div>
+                        <div className="menu-data" onClick={(e)=>deleteNote(e, props.notes)} >Delete Note </div>
                         <div className="menu-data">Add Label</div>
                         <div className="menu-data">Add drawing  </div> 
                         <div className="menu-data">Make a Copy</div> 
                         <div className="menu-data">Show Checkboxes</div>
                     </div>
                 </div>
+                
              </Popper>
+             <Snackbar
+                        anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
+                        open={open} autoHideDuration={6000} onClose={()=>handleClick()}  message="Note Deleted"
+                        action={
+                        <React.Fragment>
+                            {/* <Button color="secondary" size="small" onClick={()=>restore()}>
+                                UNDO
+                            </Button> */}
+                            <IconButton size="small" aria-label="close" color="inherit" onClick={()=>handleClick()}>
+                                <CloseIcon fontSize="small" />
+                            </IconButton>
+                        </React.Fragment>
+                        }
+                    />   
             </div>
 
     )
