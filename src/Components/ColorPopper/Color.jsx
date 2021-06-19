@@ -5,6 +5,7 @@ import React from "react";
 import bell from "../../Assets/Icons/bell.svg"
 import "../ColorPopper/Color.css"
 import Services from "../../Services/NotesServices"
+import GetNotes from '../GetNotes/GetNotes';
 const service = new Services();
 
 export default function Color(props){
@@ -31,7 +32,8 @@ export default function Color(props){
         service.colorChange(data, token).then((result)=> {
             console.log(data);
             console.log(result);
-            window.location.reload();
+            props.getNote();
+            // window.location.reload();
         })
         .catch((error) => {
             console.log(error);

@@ -50,15 +50,17 @@ export default function GetNotes(props) {
   },[]);
 
   const getNote = ()=>{
-    let token =localStorage.getItem('Token')
-
+    // e.preventDefault();
+    // e.stopPropogation();
+    let token =localStorage.getItem('Token') 
+   
     service.getNotes(token).then((result)=>{
       let arrayData = result.data.data.data;
       let array = arrayData.reverse();
       setNote(array);
       // setNote({note:result.data.data.data}) 
-      console.log(arrayData,"Arrayyy")
-      console.log(note);
+      // console.log(arrayData,"Arrayyy")
+      // console.log(note);
     })
     .catch(err=>{
       console.log(err);
@@ -67,8 +69,8 @@ export default function GetNotes(props) {
 
   return (
             <div>
-                <Addnote getNote={getNote} notes={note}/>
-                <DisplayNote getNote={getNote} notes={note}/>
+                <Addnote getNote={getNote} />
+                <DisplayNote getNote={getNote} notes={note} render={props.render}/>
             </div>
   );
 }

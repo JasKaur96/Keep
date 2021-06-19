@@ -7,7 +7,7 @@ import Services from "../../Services/NotesServices";
 import "../../Components/DisplayNote/Display.css";
 import Dialog from "@material-ui/core/Dialog";
 import pin from "../../Assets/pin.jpeg";
-import AddNote from "../Notes/Addnote";
+import "../../Components/Notes/addNotes.css";
 import Typography from '@material-ui/core/Typography';
 import Reminder from "../RemindPopper/Reminder";
 import Card from "../Card/Card";
@@ -15,6 +15,8 @@ import MenuPopper from "../MenuPopper/MenuPopper";
 import Archive from "../ArchivePopper/ArchivePopper";
 import Image from "../ImagePopper/Image";
 import Color from "../ColorPopper/Color";
+import ReminderDisplay from "../ReminderNav/ReminderDisplay";
+import ArchiveNav from "../Archive/Archive";
 const service = new Services();
 
 const useStyles = makeStyles((theme) => ({
@@ -86,6 +88,7 @@ export default function DisplayNote(props) {
 
 const update = (e) =>{
   e.stopPropagation();
+  e.preventDefault();
   let data = {
     title: title,
     description: note1,
@@ -99,7 +102,7 @@ const update = (e) =>{
   requestData.append("description", note1);
   requestData.append("color", clr);
 
-  console.log("description",id);
+  // console.log("description",id);
   // console.log("Formdata",formData);
 
 
@@ -108,11 +111,11 @@ const update = (e) =>{
   }
   else{
     let token = localStorage.getItem('Token');
-    console.log(requestData);
+    // console.log(requestData);
     service.updateNotes(requestData,token).then((data) => {
       props.getNote();
-      // props.updateNote();
-      console.log(data);
+      // props.updateNote(); 
+      // console.log(data);
     })
     .catch((error) => {
       console.log(error);
@@ -122,20 +125,39 @@ const update = (e) =>{
   click();
 }
 
-console.log("Props Notes:",props.notes)
+// console.log("Props Notes:",props)
 return ( <>
         <div className="display-note">
-            {/* {props.notes.map((data) => { */}
-              {/* var style = {backgroundColor : data.color} */}
-              {/* console.log("value Color",data) */}
-                <>
-                  {props.notes.filter((data) => data.isDeleted === false).filter((data) => data.isArchived === false).reverse().map((value)=>{
+           <>
+                  {/* {props.notes.filter((data) => data.isDeleted === false).filter((data) => data.isArchived === false).reverse().map((value)=>{
                     var style = {backgroundColor : value.color} 
-                    {/* console.log("value Color",value) */}
-                      return(
-                        <Card value={value} style={style} />
+                   
+                      return(<>
+                      
+                        <div className="">
+                           <div className="card" style={style}>
+                          <div>
+                              <div className="pin" > 
+                                <p><h4 style={{width:'90%'}}>{value.title}</h4>{value.description}</p>                          
+                                <img style={{"width":"25px"}} src={pin}></img> 
+                              </div>                 
+                          </div>   
+                        
+                          <div  className="icons-below"><Reminder getReminderNote={props.getReminderNote}/><Color notes={props.value} setClr={setColor} />
+                            <Image/><Archive notes={value} getArchivedNote={props.getArchivedNote}/><MenuPopper notes={props.value}/>                    
+                          </div>
+
+                          <div>
+               
+                </div>
+         </div>                    
+         </div>
+                        </>
                     )}                   
-                  )}             
+                  )}              */}
+                 {props.render(props.notes)} 
+                 
+          
                 </>
       
         </div>
@@ -150,7 +172,7 @@ return ( <>
                </div>                                 
                <InputBase fullWidth onChange={(e)=>setNote(e.target.value)}  multiline value={note1} />
             </div>   
-            <div  className="icons-below"> <Reminder/><Color notes={(e)=>setNote(e.target.value)} setClr={setColor}/><Image/><Archive/><MenuPopper/></div>
+            <div  className="icons-below"> <Reminder/><Color notes={(e)=>setNote(e.target.value)} setClr={setColor} getNote={props.getNote()}/><Image/><Archive  getNote={props.getNote()}/><MenuPopper/></div>
               <div className="closebtn"> 
                 <button className="close-Btn" type="button" onClick={(e)=> update(e)}  value="Close" placeholder="Close">Close</button>
               </div> 

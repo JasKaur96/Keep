@@ -1,9 +1,11 @@
-import { IconButton, Menu, Popper } from "@material-ui/core";
+import { Button, IconButton, Menu, Popper, Snackbar } from "@material-ui/core";
 import React from "react";
 import ArchiveOutlinedIcon from '@material-ui/icons/ArchiveOutlined';
 import UnarchiveOutlinedIcon from '@material-ui/icons/UnarchiveOutlined';
 // import "../../Components/RemindPopper/Reminder.css"
 import "../MenuPopper/MenuPopper.css"
+
+import CloseIcon from '@material-ui/icons/Close';
 import Services from "../../Services/NotesServices";
 
 const service = new Services();
@@ -29,8 +31,9 @@ export default function Archive(props){
         console.log("Props",data)
 
         service.archiveNote(data,token).then((result) => {
-            console.log(result);           
-            window.location.reload();
+            console.log(result);
+            props.getNote();           
+            // window.location.reload();
 
         }).catch((error) => {
             console.log(error);
@@ -50,25 +53,77 @@ export default function Archive(props){
         console.log("Props",data)
 
         service.archiveNote(data,token).then((result) => {
-            console.log("unarchived",result);           
-            window.location.reload();
+            console.log("unarchived",result);  
+            props.getArchivedNote();         
+            // window.location.reload();
 
         }).catch((error) => {
             console.log(error);
         })
     }
- 
+    const close =()=>{
+        setOpen(!open);
+      }
+      
+    // console.log(props.notes);
        
     return(
+        // console.log(props.notes);
         <div>
             <div>
-            <IconButton className="icone-circle" color="inherit"  edge="start">  
-            {props.notes.isArchived ? <UnarchiveOutlinedIcon  onClick={()=>unArchieveNote(props.notes)} /> :
-          
-                <ArchiveOutlinedIcon className="icon-place" onClick={()=>archieveNote(props.notes)}  style={{"width":"20px"}}/>
-          
-            }   
+            <IconButton className="icone-circle" color="inherit"  edge="start" onClick={()=>close()}>  
+            {props.notes.isArchived === true?<>
+                 <UnarchiveOutlinedIcon  onClick={()=>unArchieveNote()}  style={{"width":"20px"}} />
+                  {/* <Snackbar
+                        anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
+                        open={open} autoHideDuration={6000} onClose={()=>close()} message="Note UnArchived"
+                        action={
+                        <React.Fragment>
+                            <Button color="secondary" size="small" 
+                            onClick={()=>unArchieveNote()}>
+                                UNDO
+                            </Button>
+                            <IconButton size="small" aria-label="close" color="inherit" onClick={()=>close()}>
+                                <CloseIcon fontSize="small" />
+                            </IconButton>
+                        </React.Fragment>
+                        }
+                    />   */}
+                      </>:<>
+                 <ArchiveOutlinedIcon className="icon-place" onClick={()=>archieveNote()}  style={{"width":"20px"}}/>
+                 {/* <Snackbar
+                        anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
+                        open={open} autoHideDuration={6000} onClose={()=>close()} message="Note archived"
+                        action={
+                        <React.Fragment>
+                            <Button color="secondary" size="small" 
+                            onClick={()=>archieveNote()} >
+                                UNDO
+                            </Button>
+                            <IconButton size="small" aria-label="close" color="inherit" onClick={()=>close()}>
+                                <CloseIcon fontSize="small" />
+                            </IconButton>
+                        </React.Fragment>
+                        }
+                    />    */}
+                    </>
+             }
+             <Snackbar
+                        anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
+                        open={open} autoHideDuration={6000} onClose={()=>close()}  message={props.isArchived === true ? ("Note UnArchived") :( "Note Archived") }
+                        action={
+                        <React.Fragment>
+                            <Button color="secondary" size="small" onClick={()=>unArchieveNote()}>
+                                UNDO
+                            </Button>
+                            <IconButton size="small" aria-label="close" color="inherit" onClick={()=>close()}>
+                                <CloseIcon fontSize="small" />
+                            </IconButton>
+                        </React.Fragment>
+                        }
+                    />    
             </IconButton>
+           
             </div>
           
             </div>

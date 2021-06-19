@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import InputBase from "@material-ui/core/InputBase";
 import { makeStyles } from "@material-ui/core/styles";
 import CheckBoxOutlinedIcon from "@material-ui/icons/CheckBoxOutlined";
@@ -18,6 +18,9 @@ import Color from "../ColorPopper/Color";
 import Undo from "../Undo/Undo";
 import Redo from "../Undo/Redo";
 import Icon from "../Icons/Icons";
+
+import moment from 'moment';
+import { Chip } from "@material-ui/core";
 
 const service = new Services();
 
@@ -54,6 +57,30 @@ export default function Addnote(props) {
   var [note, setNote] = React.useState();  
   var [clr, setColor] = React.useState();  
   var [id, setNoteId] = React.useState();
+  var [reminder, setReminder] = React.useState([]);
+
+  // useEffect(() => {
+  //   getReminderData();
+  // }, [])
+
+  var getReminderData = (date, time) => {
+        
+    if (date !== null && time !== null) {
+        let reminder = moment(date).format("MMM D")+", "+ moment(time).format("h:mm:A");
+        setReminder({reminder: reminder});
+        console.log("Reminder: ",reminder);
+        console.log(moment(date).format("MMM D"));
+        console.log(moment(time).format("h:mm:A"));
+    }
+}
+
+const getnote =()=>{
+  props.getNote();
+}
+
+const handleReminder = () => {
+    setReminder({reminder: null});
+}
   const click =()=>{
     setOpen(!open);
   }
@@ -64,10 +91,9 @@ export default function Addnote(props) {
       title: title,
       description: note,
       color:clr,
-      id:id
+      id:id,
+      reminder: reminder.reminder
     }
-
-    click();
 
     if(data.title === '' || data.description === ''){
       console.log("No note ");
@@ -75,18 +101,23 @@ export default function Addnote(props) {
     else{
       let token = localStorage.getItem('Token');
       service.addNotes(data,token).then((data) => {
+        props.updateReminderData();
         props.getNote();
-        props.updateNote();
         console.log(data);
       })
       .catch((error) => {
         console.log(error);
       })
     }
+
+    click();
+  }
+  const getNote=()=>{
+    props.getNote();
   }
 
+// console.log("ADd Notes",props)
 
-// console.log("ADd Color", clr)
   return (
     <div >
       {!open ? 
@@ -103,12 +134,19 @@ export default function Addnote(props) {
               onChange={(e) => setTitle(e.target.value)} inputProps={{'aria-label': 'Title'}} />
             <img style={{"width":"25px"}} src={pin}></img>
             <InputBase fullWidth onChange={(e)=>setNote(e.target.value)}  multiline defaultValue="" placeholder="Take a Note "/>
-       
+            <div>
+                                {props.reminder !== '' && (
+                                    <div className="reminder">
+                                    <Chip label={props.reminder} onDelete={() => handleReminder()} size="small"
+                                    />
+                                    </div>
+                                )}
+                          </div>
           </div>
-          
+         
           <div>          
             <div className="">
-              <div className="closeBtn"> 
+              <div className="closeBtn">  
                 <button className="close-btn" type="button" onClick={close}  value="Close" placeholder="Close">Close</button>
                </div>
              </div>
@@ -116,13 +154,13 @@ export default function Addnote(props) {
         </div>        
         <div className="icons"> 
             {/* <Icon/> */}
-        <Reminder/><Color onChange={(e)=>setNoteId(e.target.value)} setClr={setColor} /><Image/><Archive/><MenuPopper/>
+        <Reminder getReminder={getReminderData}  getNote={props.getNote} notes={props}/><Color onChange={(e)=>setNoteId(e.target.value)} setClr={setColor} /><Archive  getNote={props.getNote} notes={props}/><Image/><MenuPopper  getNote={props.getNote}/>
 
         <Undo/><Redo/></div>
       </>
      }
      {/* <GetNotes/> */}
     </div>
-
+ 
   );
 }
