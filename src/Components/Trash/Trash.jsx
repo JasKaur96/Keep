@@ -1,5 +1,3 @@
-
-
 import React, {useEffect} from "react";
 import InputBase from "@material-ui/core/InputBase";
 import { makeStyles } from "@material-ui/core/styles";
@@ -44,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Trash(props) {
    
-  const classes = useStyles();
+  // const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   var [title, setTitle] = React.useState("");
   // var [description, setDescription] = React.useState("");
