@@ -10,14 +10,13 @@ import Services from "../../Services/NotesServices";
 import "./addNotes.css";
 import pin from "../../Assets/pin.jpeg";
 import Reminder from "../RemindPopper/Reminder";
-import GetNotes from "../GetNotes/GetNotes";
+import Card from "../Card/Card";
 import MenuPopper from "../MenuPopper/MenuPopper";
 import Archive from "../ArchivePopper/ArchivePopper";
 import Image from "../ImagePopper/Image";
 import Color from "../ColorPopper/Color";
 import Undo from "../Undo/Undo";
 import Redo from "../Undo/Redo";
-import Icon from "../Icons/Icons";
 
 import moment from 'moment';
 import { Chip } from "@material-ui/core";
@@ -74,9 +73,9 @@ export default function Addnote(props) {
     }
 }
 
-const getnote =()=>{
-  props.getNote();
-}
+// const getnote =()=>{
+//   props.getNote();
+// }
 
 const handleReminder = () => {
     setReminder({reminder: null});
@@ -91,7 +90,7 @@ const handleReminder = () => {
       title: title,
       description: note,
       color:clr,
-      id:id,
+      id:id, 
       reminder: reminder.reminder
     }
 
@@ -102,7 +101,7 @@ const handleReminder = () => {
       let token = localStorage.getItem('Token');
       service.addNotes(data,token).then((data) => {
         props.updateReminderData();
-        props.getNote();
+        // props.getNote();
         console.log(data);
       })
       .catch((error) => {
@@ -112,9 +111,9 @@ const handleReminder = () => {
 
     click();
   }
-  const getNote=()=>{
-    props.getNote();
-  }
+  // const getNote=()=>{
+  //   props.getNote();
+  // }
 
 // console.log("ADd Notes",props)
 
@@ -126,7 +125,7 @@ const handleReminder = () => {
           <CheckBoxOutlinedIcon/>
           <BrushOutlinedIcon/>
           <ImageOutlinedIcon/>
-        </div>    
+        </div>     
       :<>
         <div className="brieftakenote">
           <div >
@@ -137,13 +136,12 @@ const handleReminder = () => {
             <div>
                                 {props.reminder !== '' && (
                                     <div className="reminder">
-                                    <Chip label={props.reminder} onDelete={() => handleReminder()} size="small"
-                                    />
+                                    {/* <Chip label={props.reminder} onDelete={() => handleReminder()} size="small"
+                                    /> */}
                                     </div>
                                 )}
                           </div>
           </div>
-         
           <div>          
             <div className="">
               <div className="closeBtn">  
@@ -153,8 +151,8 @@ const handleReminder = () => {
            </div>          
         </div>        
         <div className="icons"> 
-            {/* <Icon/> */}
-        <Reminder getReminder={getReminderData}  getNote={props.getNote} notes={props}/><Color onChange={(e)=>setNoteId(e.target.value)} setClr={setColor} /><Archive  getNote={props.getNote} notes={props}/><Image/><MenuPopper  getNote={props.getNote}/>
+           
+        <Reminder getReminder={getReminderData}  getNote={props.getNote} notes={props}/><Color  getNote={props.getNote} onChange={(e)=>setNoteId(e.target.value)} setClr={setColor} /><Archive  getNote={props.getNote} notes={props}/><Image/><MenuPopper  getNote={props.getNote}/>
 
         <Undo/><Redo/></div>
       </>

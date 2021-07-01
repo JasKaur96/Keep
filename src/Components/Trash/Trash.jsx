@@ -6,7 +6,7 @@ import BrushOutlinedIcon from "@material-ui/icons/BrushOutlined";
 import Services from "../../Services/NotesServices";
 import "../../Components/DisplayNote/Display.css";
 import Dialog from "@material-ui/core/Dialog";
-import pin from "../../Assets/pin.jpeg";
+import '../GetNotes/GetNotes.css'
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import RestoreFromTrashIcon from '@material-ui/icons/RestoreFromTrash';
 const service = new Services();
@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "1rem",
     fontWeight: "550",
     lineHeight: "1.5rem",
-    color: "#211a1a",
+    color: "#211a1a", 
     width: "100%"
   },
 
@@ -109,7 +109,7 @@ const restoreNote = (e,value)=>{
   console.log("Props",data)
 
   service.deleteNote(data,token).then((result) => {
-      console.log(result);    
+      console.log(result);     
       getDeletedNote();       
       // window.location.reload();
 
@@ -119,7 +119,7 @@ const restoreNote = (e,value)=>{
 }
 
 console.log("Props Notes:",note)
-
+ 
 return ( <>
         <div className="display-note">
           {/* {note.filter((data) => data.isDeleted === true).filter((data) => data.isArchived === false).reverse().map((value)=>{
@@ -143,7 +143,7 @@ return ( <>
             )}                   
           )} */}
 
-            {props.render(note)}
+            {props.render(note,getDeletedNote)}
         </div>
 
   </>

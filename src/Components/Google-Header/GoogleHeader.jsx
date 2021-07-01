@@ -13,6 +13,6 @@ const GoogleHeader = () => {
             </div> 
         </div>
     )   
-}
+} 
 
 export default GoogleHeader

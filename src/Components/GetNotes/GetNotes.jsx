@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     justifySelf: "flex-end",
     fontFamily: 'Google Sans ,Roboto,Arial,sans-serif',
     cursor: 'pointer',
-  }
+  } 
 
 }));
 
@@ -44,23 +44,26 @@ export default function GetNotes(props) {
   const [open,setOpen] = React.useState(false);
   var [title, setTitle] = React.useState([]);
   var [note, setNote] = React.useState([]);
+  var [piNote, setPinedNote] = React.useState([]);
+
+  console.log("Value of Getnote",props.getNote)
 
   useEffect(() => {
-   getNote();
-  },[]);
-
+   getNote(); 
+  },[props.getNote]);
+ 
   const getNote = ()=>{
-    // e.preventDefault();
-    // e.stopPropogation();
-    let token =localStorage.getItem('Token') 
-   
+    
+    let token =localStorage.getItem('Token')  
+    
     service.getNotes(token).then((result)=>{
+
       let arrayData = result.data.data.data;
+      // console.log("getnotes.",result.data.data.isArchived);
       let array = arrayData.reverse();
-      setNote(array);
-      // setNote({note:result.data.data.data}) 
-      // console.log(arrayData,"Arrayyy")
-      // console.log(note);
+      setNote(array);   
+      props.getNoteForSearch(array);     
+      props.responseGetNote();
     })
     .catch(err=>{
       console.log(err);

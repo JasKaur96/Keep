@@ -47,7 +47,20 @@ const useStyles = makeStyles((theme) => ({
     paddingleft: '24px',
     color: 'grey',
     borderRadius: '0 25px 25px 0',
-  
+    // '&:focus':{
+      // backgroundColor: '#feefc3',
+      
+      backgroundColor: '#fff',
+      // borderRadius:'100rem',
+    // },
+    // '&:hover':{
+    //   backgroundColor:"#feefc3",
+   
+    // },
+    // '&:selection':{
+    //   backgroundColor:"#feefc3",
+    //   borderRadius: '0 25px 25px 0',
+    // }
   },
 
   newListItems:{
@@ -58,20 +71,42 @@ const useStyles = makeStyles((theme) => ({
     lineHeight:'1.25rem',
     paddingleft: '24px',
     color: 'grey',
-    borderRadius: '0 25px 25px 0',
-  
-  '&:focus':{
-    backgroundColor: '#feefc3',
-    borderRadius: '0 25px 25px 0',
-  },
+    // borderRadius: '0 25px 25px 0',
+    backgroundColor:"#feefc3",
+    // borderRadius: '50%',
+  // '&:focus':{
+  //   backgroundColor: '#feefc3',
+  //   borderRadius: '0 25px 25px 0',
+  // },
   '&:hover':{
-    backgroundColor:"#F6F2F1",
+    backgroundColor:"#feefc3",
+    // borderRadius: '0 25px 25px 0',
   },
   '&:selection':{
     backgroundColor:"#feefc3",
+    // borderRadius: '0 25px 25px 0',
   }
-},
+  },
+  listItems2:{
+    letterSpacing: '.01785714em',
+    fontFamily: 'Google Sans, Roboto, Arial, sans-serif',
+    fontSize: '.875rem',
+    fontWeight:'500',
+    lineHeight:'1.25rem',
+    paddingleft: '4px',
+    color: 'grey',
+    '&:focus':{
+      backgroundColor: '#feefc3',
+      
+      borderRadius: '0 25px 25px 0',
+    },
+    '&:hover':{
+      backgroundColor:"#feefc3",
+      borderRadius: '0 25px 25px 0',
+    },
 
+},
+ 
   
 }));
 
@@ -112,31 +147,31 @@ export default function SideDrawer(props){
           open={props.open}
         >
           
-            <ListItem button  className={props.selected == "Keep" ? classes.newListItems : classes.listItems} 
+            <ListItem button   className={props.selected == "Keep" ? classes.listItems2 :classes.listItems} 
                 onClick={()=>sendName("Keep")}
             >           
-              <ListItemIcon > <IconButton  edge="start">  <img src={bulb} ></img></IconButton></ListItemIcon>
+              <ListItemIcon > <IconButton   className={props.selected == "Keep" ? classes.newListItems : {backgroundColor:"#fff"}} edge="start">  <img src={bulb} ></img></IconButton></ListItemIcon>
               <ListItemText primary={'Notes'}/>
             </ListItem>
-            <ListItem button key={'Reminders'}  className={props.selected == "Reminder" ? classes.newListItems : classes.listItems} 
+            <ListItem button key={'Reminders'}  className={props.selected == "Reminder" ? classes.listItems2 :classes.listItems} 
                 onClick={()=>sendName("Reminder")}>
-              <ListItemIcon><IconButton  edge="start"> <img src={bell}></img></IconButton></ListItemIcon>
+              <ListItemIcon><IconButton  className={props.selected == "Reminder" ? classes.newListItems : {backgroundColor:"#fff"}} edge="start"> <img src={bell}></img></IconButton></ListItemIcon>
               <ListItemText primary={'Reminders'}/>
             </ListItem>
-            <ListItem button key={'Editlabels'}  className={props.selected == "Edit" ? classes.newListItems : classes.listItems} 
+            <ListItem button key={'Editlabels'} className={props.selected == "Edit" ? classes.listItems2 :classes.listItems} 
                 onClick={()=>sendName("Edit")} >
-              <ListItemIcon><IconButton  edge="start"> <img src={edit}></img></IconButton> </ListItemIcon>
+              <ListItemIcon><IconButton   className={props.selected == "Edit" ? classes.newListItems : {backgroundColor:"#fff"}} edge="start"> <img src={edit}></img></IconButton> </ListItemIcon>
                <ListItemText primary={'Edit labels'}/>
             </ListItem>
-            <ListItem button key={'Archive'}  className={props.selected == "Archive" ? classes.newListItems : classes.listItems} 
+            <ListItem button key={'Archive'} className={props.selected == "Archive" ? classes.listItems2 :classes.listItems} 
                 onClick={()=>sendName("Archive")}>
-              <ListItemIcon><IconButton edge="start"> <img src={archive}></img></IconButton>
+              <ListItemIcon><IconButton   className={props.selected == "Archive" ? classes.newListItems : {backgroundColor:"#fff"}} edge="start"> <img src={archive}></img></IconButton>
               </ListItemIcon>
               <ListItemText primary={'Archive'}/>
             </ListItem>
-            <ListItem button key={'Trash'}  className={props.selected == "Trash" ? classes.newListItems : classes.listItems} 
+            <ListItem button key={'Trash'} className={props.selected == "Trash" ? classes.listItems2 :classes.listItems} 
                 onClick={()=>sendName("Trash")}>
-              <ListItemIcon><IconButton  edge="start"> <img src={trash}></img></IconButton></ListItemIcon>
+              <ListItemIcon><IconButton   className={props.selected == "Trash" ? classes.newListItems : {backgroundColor:"#fff"}}  edge="start"> <img src={trash}></img></IconButton></ListItemIcon>
               <ListItemText primary={'Trash'}/>
             </ListItem>
         </Drawer>

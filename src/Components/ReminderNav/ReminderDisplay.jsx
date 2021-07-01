@@ -12,11 +12,11 @@ import { Chip } from "@material-ui/core";
 import ReminderNav from "./ReminderNav";
 import Addnote from "../Notes/Addnote";
 
-const service = new Services();
+const service = new Services(); 
 
 export default function ReminderDisplay(props) {
     const [open,setOpen]=React.useState(false);
-  const [note, setNote] = React.useState([]);
+  const [note, setNote] = React.useState([]); 
   var [title, setTitle] = React.useState("");
   var [description, setDescription] = React.useState("");
   var [clr, setColor] = React.useState("");
@@ -25,9 +25,9 @@ export default function ReminderDisplay(props) {
   const [reminder, setReminder] = React.useState();
 
    const  handleClose = () => {
-    setOpen({open: !open})
+    setOpen({open: !open}) 
     };
-
+ 
     const handleTitle = (event) => {
     setTitle({title: event.target.value})
     }
@@ -57,7 +57,7 @@ return ( <>
   </>
 )
 }
-
+ 
 
 
 // {note.filter((data) => data.isDeleted === false).filter((data) => data.isArchived === false).reverse().map((value)=>{

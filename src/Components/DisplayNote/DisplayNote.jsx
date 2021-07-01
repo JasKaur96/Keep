@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "1rem",
     fontWeight: "550",
     lineHeight: "1.5rem",
-    color: "#211a1a",
+    color: "#211a1a", 
     width: "100%"
   },
 
@@ -75,13 +75,6 @@ export default function DisplayNote(props) {
     // setOpen(false);
   };
 
-  // const handleTitle =(event)=>{
-  //   setTitle({title: event.target.data})
-  // }
-  // const handleDescription =(event)=>{
-  //   setTitle({description: event.target.data})
-  // }
-
   const click =()=>{
     setOpen(!open);
   }
@@ -97,7 +90,6 @@ const update = (e) =>{
   }
   var requestData = new FormData();
   requestData.append("noteId", id);
-  // requestData.set("file", state.file);
   requestData.append("title", title);
   requestData.append("description", note1);
   requestData.append("color", clr);
@@ -113,7 +105,7 @@ const update = (e) =>{
     let token = localStorage.getItem('Token');
     // console.log(requestData);
     service.updateNotes(requestData,token).then((data) => {
-      props.getNote();
+      // props.getNote();
       // props.updateNote(); 
       // console.log(data);
     })
@@ -127,7 +119,7 @@ const update = (e) =>{
 
 // console.log("Props Notes:",props)
 return ( <>
-        <div className="display-note">
+        <div className="">
            <>
                   {/* {props.notes.filter((data) => data.isDeleted === false).filter((data) => data.isArchived === false).reverse().map((value)=>{
                     var style = {backgroundColor : value.color} 
@@ -152,9 +144,10 @@ return ( <>
                 </div>
          </div>                    
          </div>
-                        </>
+                        </> 
                     )}                   
                   )}              */}
+                
                  {props.render(props.notes)} 
                  
           
@@ -172,7 +165,7 @@ return ( <>
                </div>                                 
                <InputBase fullWidth onChange={(e)=>setNote(e.target.value)}  multiline value={note1} />
             </div>   
-            <div  className="icons-below"> <Reminder/><Color notes={(e)=>setNote(e.target.value)} setClr={setColor} getNote={props.getNote()}/><Image/><Archive  getNote={props.getNote()}/><MenuPopper/></div>
+            <div  className="icons-below"> <Reminder/><Color notes={(e)=>setNote(e.target.value)} setClr={setColor} getNote={props.getNote}/><Image/><Archive  getNote={props.getNote}/><MenuPopper/></div>
               <div className="closebtn"> 
                 <button className="close-Btn" type="button" onClick={(e)=> update(e)}  value="Close" placeholder="Close">Close</button>
               </div> 
