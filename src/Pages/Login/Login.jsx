@@ -1,4 +1,4 @@
-import {Component} from 'react';
+import React,{Component} from 'react';
 import './login.css'
 import TextField from '@material-ui/core/TextField';
 import {Button, Slide, Snackbar} from '@material-ui/core'
@@ -7,6 +7,9 @@ import {Link} from 'react-router-dom';
 import userService from '../../Services/UserServices'
 
 const service = new userService();
+const userNameRef = React.createRef();
+const passwordRef = React.createRef();
+const saveRef = React.createRef();
 
 export default class Login extends Component {
     constructor(probs){
@@ -21,9 +24,37 @@ export default class Login extends Component {
             showpassword:true,
             show: false,          
             snackmsg: ""
-        }        
+        }                
     }
     
+    componentDidMount(){
+        // userNameRef.current.focus();
+        // passwordRef.current.focus();
+    }
+
+    nameKeyPress(event) {
+        if (event.charCode === 13) { // enter key pressed
+          event.preventDefault();
+          passwordRef.current.focus();
+        } 
+    }
+
+    pswdKeyPress(event) {
+        if (event.charCode === 13) { // enter key pressed
+          event.preventDefault();
+          saveRef.current.focus();
+        } 
+    }
+
+    saveKeyPress(event) {
+        if (event.charCode === 13) { // enter key pressed
+          event.preventDefault();
+          console.log("Save key Press")
+          this.submit();
+        } 
+    }
+
+
    handlechange =(e)=>{
        let name = e.target.name;
        let value = e.target.value;
@@ -119,9 +150,10 @@ handleClose = (reason) =>{
                             <p className="signin-font"> Sign in</p>
                             <div>  Use your Google Account </div>
                             <div className="textfields">
-                                <TextField id="outlined-basic" error={this.state.usernameError} helperText={this.state.usernameErrorMsg} className="text-width"
+                                <TextField inputRef={userNameRef} onKeyPress={this.nameKeyPress} id="outlined-basic" error={this.state.usernameError} helperText={this.state.usernameErrorMsg} className="text-width"
                                  variant="outlined" name="username" label="Email or phone " size="small" onChange={this.handlechange} margin="dense" />
-                                <TextField id="outlined-basic" type={this.state.showpassword ? "password" : "type"}  error={this.state.passwordError} 
+                              
+                                <TextField  inputRef={passwordRef} onKeyPress={this.pswdKeyPress} id="outlined-basic" type={this.state.showpassword ? "password" : "type"}  error={this.state.passwordError} 
                                 helperText={this.state.passwordErrorMsg} variant="outlined" className="text-width" name="password" label="Password" size="small" 
                                 margin="dense" onChange={this.handlechange}/>
                                 <div className="pswd">
@@ -142,8 +174,8 @@ handleClose = (reason) =>{
 
                             <div className="inline__button">
                                     <Link to="/">Create Account</Link>
-                                    <Button variant="outlined" onClick={this.submit} >Next</Button>
-                                    {/* <Snackbar
+                                    <Button variant="outlined" ref={saveRef} onKeyDown={this.saveKeyPress} onClick={this.submit} >Next</Button>
+                                     {/* <Snackbar
                                         anchorOrigin={{
                                             vertical: 'bottom',
                                             horizontal: 'left',

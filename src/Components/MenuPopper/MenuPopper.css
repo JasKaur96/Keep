@@ -8,7 +8,7 @@
     display: flex;
     background-color:white;
     justify-content: flex-start;
-    padding:5px ;
+    /* padding:5px ;  */
     
 }
 .menu-data{
@@ -20,12 +20,15 @@
     padding: 1px;
 }
 .menu-data:hover{
-    display: flex;
+    /* display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-left: -5px;
-    width:150px;
-    height:25px; 
+    
+    */
+    /* height:25px; */
+    width:140px;
+    /* padding: 1px; */
+    /* margin-left: -5px; */
     background-color:rgb(236, 236, 236);
     
 }

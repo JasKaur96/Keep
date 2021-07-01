@@ -110,5 +110,14 @@ export default class NotesService{
             }
         })
     }
+
+    pinNote = (data,token) => {
+        console.log("Pin Service.")
+        return axios.postMethod(baseUrl+"notes/pinUnpinNotes",data,{
+            headers:{
+                'Authorization':token,
+            }
+        })
+    }
     
 }

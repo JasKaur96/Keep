@@ -20,7 +20,7 @@ export default function Image(){
         <div>     
             <div onClick={e=>handleClick(e)}> <IconButton  className="icon-place" color="inherit"  edge="start">  
               <ImageOutlinedIcon  className="icon-place" style={{"width":"18px"}} ></ImageOutlinedIcon> </IconButton></div>
-            <Popper  id={id} onClick={e=>handleClick(e)} open={open} anchorEl={anchorEl}>
+            <Popper id={id} onClick={e=>handleClick(e)} open={open} anchorEl={anchorEl}>
                
              </Popper>
             

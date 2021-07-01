@@ -8,12 +8,13 @@ import Reminder from "../../Components/ReminderNav/ReminderNav";
 import Trash from "../../Components/Trash/Trash";
 import Archive from "../../Components/Archive/Archive";
 import MapData from "../../Components/MapData/MapData";
+import SearchNoteData from "../../Components/MapData/SearchNoteData";
 
 const drawerWidth = 230;
 
 const useStyles = makeStyles((theme) => ({
     root: {
-      display: "flex",
+      display: "flex", 
     },
     appBar: {
       backgroundColor: "#ffff",
@@ -116,7 +117,7 @@ const useStyles = makeStyles((theme) => ({
       ...theme.mixins.toolbar,
     },
     searchInput:{
-      marginLeft: "10px", 
+      marginLeft: "10px",  
       width: "80%"
     }
   }));
@@ -127,24 +128,31 @@ class Dashboard extends Component{
           this.state ={
             open: false,
             profile: false,
-            selectedRout:'notes'
+            selectedRout:'notes',
+            gridView: false,
+            searchNote: [],
+            search: "",
+            SearchedData:[],
+            note:[],
+            getNote:false
+            
           }
       }
     
       handleDrawerOpen = () => {
         this.setState({open: false});
         // props.drawerOpen()
-        console.log("draweropen drawer")
+        // console.log("draweropen drawer")
       };
       
       handleDrawerClose = () => {
         this.setState({open: true});
         // props.drawerClose()
-        console.log("drawerclose drawer")
+        // console.log("drawerclose drawer")
       };
      
       handleProfile = () => {
-        console.log("profile button");
+        // console.log("profile button");
         this.setState({ profile: !this.state.profile })  
       }
      
@@ -158,46 +166,84 @@ class Dashboard extends Component{
   
   setRout = (data) => {
       this.setState({selectedRout:data})
-      console.log(data);
+      // console.log(data);
   }
 
-  displayRenderData =(data)=>{
-    return <MapData note={data}/>
+  onClickGrid = () =>{
+    this.setState({gridView: !this.state.gridView})
+    console.log(this.state.gridView);
+  }
+  
+
+  callGetNote = ()=>{
+      this.setState({getNote: true})
+      console.log("Call Getnote", this.state.getNote)
   }
 
+  responseOfGetNOte =()=>{
+    this.setState({getNote: false})
+    console.log("Response Getnote", this.state.getNote)
+  }
+
+  displayRenderData =(data)=>{ 
+    return <MapData callGetNote={this.callGetNote} gridView={this.state.gridView} note={data}/>
+  }
+
+   
+  handleSearchNote = (value) => {
+    this.setState({search: value});
+    console.log("Dashboard seaarch method",value);
+    console.log("Dashboard search Note ====>>>",this.state.search);
+    this.filterSearchNote(value)
+  }
+
+  getNoteForSearch = (value) => {
+    this.setState({searchNote : value}) 
+  }
+
+  filterSearchNote = (value)=>{   
+    var array = []
+    this.state.searchNote.filter(data => data.title.toLowerCase().includes(value.toLowerCase()) || data.description.toLowerCase().includes(value.toLowerCase())).map((searchedData)=>{
+        console.log("Filtered data : ", searchedData);
+        array.push(searchedData);
+        console.log("Array here", array)
+        console.log("State here", this.state.SearchedData)
+      })
+      this.setState({SearchedData: array })
+      console.log("Array outside ", array)
+  }
+  
   rendering =() => {
-    console.log("render inside")
+    // console.log("render inside")
       if(this.state.selectedRout == 'notes'){
-        console.log("render inside")
-        return <GetNotes render = {this.displayRenderData}/>
+        // console.log("render inside")
+        return <GetNotes  getNote={this.state.getNote} responseGetNote={this.responseOfGetNOte}
+        getNoteForSearch={this.getNoteForSearch} searchNote={this.state.searchNote} search={this.state.search} render = {this.displayRenderData}/>
 
       }else if (this.state.selectedRout == 'Reminder'){
         return <Reminder render = { data => <MapData note={data}/>}/>
       }
       else if (this.state.selectedRout == 'Archive'){
-        
-        console.log("render inside archive",this.state.selectedRout)
-        return <Archive render = { data => <MapData note={data}/>}/>
+        // console.log("render inside archive",this.state.selectedRout)
+        return <Archive  render = { (data,method) => <MapData note={data} getArchivedNote={method}  callGetNote={this.callGetNote} />}/>
       }
       else if (this.state.selectedRout == 'Trash'){
-        console.log("render inside",this.state.selectedRout)
-        return <Trash  render = { data => <MapData note={data}/>}/>
+        // console.log("render inside",this.state.selectedRout)
+        return <Trash  render = { (data,method) => <MapData note={data} getDeletedNote={method}  callGetNote={this.callGetNote}/>}/>
       }
       else{
-        return <GetNotes render = { data => <MapData note={data}/>}/>
+        return <GetNotes render = { data => <MapData note={data} />}/>
       }
   }
- 
-    
+  
     render(){
-        // const {classes} = this.props;
-        // console.log(this.props)
         return(
-            <div>
-                <Appbar rout={this.setRout}/>
+            <div className="dash">
+                <Appbar rout={this.setRout} 
+                 handleSearchNote={this.handleSearchNote} searchNote={this.state.searchNote} search={this.state.search} gridView={this.state.gridView} grid={this.onClickGrid}/>
                 {this.state.selectedRout}
-                <div>
-                  {this.rendering()}                  
+                <div  className="dash">
+                  {this.state.search != "" ? this.displayRenderData(this.state.SearchedData) : this.rendering()}                  
                 </div>
             </div>
         )}

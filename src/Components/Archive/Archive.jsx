@@ -76,9 +76,9 @@ const getArchivedNote = ()=>{
     })
     .catch((error) => {
         console.log(error);
-    })
+    }) 
 }
-
+ 
 console.log("Props Notes:",note)
 
 return ( <>
@@ -88,7 +88,7 @@ return ( <>
           }
           )} */}
 
-          {props.render(note)}
+          {props.render(note,getArchivedNote)}
         </div>
 
   </>

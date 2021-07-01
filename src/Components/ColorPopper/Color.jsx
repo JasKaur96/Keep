@@ -33,10 +33,11 @@ export default function Color(props){
             console.log(data);
             console.log(result);
             props.getNote();
+          
             // window.location.reload();
         })
         .catch((error) => {
-            console.log(error);
+            console.log(error); 
         })
     }
 
@@ -44,8 +45,9 @@ export default function Color(props){
                     "#b39ddb" ,"#f8bbd0" ,"#a1887f" ,"#cfd8dc" ,
                     ];
     return (
-        <div>
-            <IconButton  className="icon-place" color="inherit"  edge="start">  <PaletteOutlinedIcon  className="icon-place" aria-describedby={id} type="button" onClick={handleClick} style={{cursor:"pointer", width:"20px"}}/>
+        <div> 
+            <IconButton  className="icon-place" color="inherit"  edge="start"> 
+             <PaletteOutlinedIcon  className="icon-place" aria-describedby={id} type="button" onClick={handleClick} style={{cursor:"pointer", width:"18px"}}/>
             </IconButton><Popper  placement="top-start" id={id} open={open} anchorEl={anchorEl}>
                 <div>
                     {

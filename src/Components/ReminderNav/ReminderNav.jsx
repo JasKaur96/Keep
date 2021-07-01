@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     padding: "10px 15px",
     fontSize: "1rem",
     fontWeight: "550",
-    lineHeight: "1.5rem", 
+    lineHeight: "1.5rem",  
     color: "#211a1a",
     width: "100%"
   },
@@ -54,7 +54,7 @@ export default function ReminderNav(props) {
 
   useEffect(() => {
     getReminderNote();
-   },[]);
+   },[]); 
  
  const getReminderNote = (e) => {
     let token = localStorage.getItem('Token');
@@ -81,10 +81,10 @@ console.log("Props Notes in Reminder Nav:",note)
 
 return ( <>
          <Addnote updateReminderData={getReminderNote}/>
-          <ReminderDisplay notes={note} updateReminderNote={props.updateReminderNote}
+          <ReminderDisplay notes={note}  updateReminderData={getReminderNote} updateReminderNote={props.updateReminderNote}
                     updateReminder={props.updateReminder} render={props.render}/>
          
-          {/* <div className="display-note">       
+           {/* <div className="display-note">       
             {note.filter((data) => data.isDeleted === false).filter((data) => data.isArchived === false).reverse().map((value)=>{
                 var style = {backgroundColor : value.color} 
                 console.log("value Color",value)

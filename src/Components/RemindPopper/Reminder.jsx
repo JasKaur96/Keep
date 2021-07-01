@@ -17,7 +17,7 @@ export default function Reminder(props){
   
     const callDateTime = () => {
         setDateTime(!dateTime)
-        // setOpen(!open)
+        // setOpen(!open) 
       }
     
       const getData = (date, time) => {
@@ -35,12 +35,12 @@ export default function Reminder(props){
     };
 
 
-    const open = Boolean(anchorEl);
+    const open = Boolean(anchorEl); 
     const id = open ? 'simple-popper' : undefined;
 
     return( 
-        <div>
-            <div ><IconButton color="inherit"  edge="start" onClick={e=>handleClick(e)} clickAway={e=>handleClick(e)}>  <img   className="reminder" style={{"width":"18px"}}  src={bell}></img></IconButton></div>
+        <div> 
+            <div ><IconButton color="inherit"  edge="start" onClick={e=>handleClick(e)} clickaway={e=>handleClick(e)}>  <img   className="reminder" style={{"width":"18px"}}  src={bell}></img></IconButton></div>
             <Popper position="bottom-end"  id={id} open={open} anchorEl={anchorEl}>
                 {dateTime? <DateTimePicker setAll={callDateTime} edit={false} getReminder={getData}  notes={props.notes} />
 
@@ -53,7 +53,7 @@ export default function Reminder(props){
                             
                             <div className="data">Tomorrow <div className="data1">&nbsp; 8:00</div></div>  <br/>
                              <div className="data">Next week</div>  <br/>
-                            <div className="data" style={{cursor:"pointer"}} onClick={callDateTime} 
+                             <div className="data" style={{cursor:"pointer"}} onClick={callDateTime} 
                             // onClick={()=>timeDateSet()}
                              >Pick date & time</div>  <br/>
                             <div className="data">Pick place</div>

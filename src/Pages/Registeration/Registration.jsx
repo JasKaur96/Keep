@@ -1,4 +1,4 @@
-import {Component } from 'react';
+import React,{Component } from 'react';
 import './Registeration.css'
 import TextField from '@material-ui/core/TextField';
 import {Link} from 'react-router-dom';
@@ -7,6 +7,12 @@ import GoogleHeader from '../../Components/Google-Header/GoogleHeader'
 import userService from '../../Services/UserServices'
 
 const service = new userService();
+const firstnameRef = React.createRef();
+const lastnameRef = React.createRef();
+const emailRef = React.createRef();
+const passwordRef = React.createRef();
+const confirmPasswordRef = React.createRef();         
+const saveRef= React.createRef();
 
 export default class Registration extends Component {
 
@@ -32,14 +38,58 @@ export default class Registration extends Component {
             show: false,
             snackmsg:""
         };
+      
+    }
+    componentDidMount(){
+        // firstnameRef.current.focus();
+        // passwordRef.current.focus();
+    } 
+
+    nameKeyPress(event) {
+        if (event.charCode === 13) { // enter key pressed
+          event.preventDefault();
+          lastnameRef.current.focus();
+        } 
+    }
+  
+    lNameKeyPress(event) {
+        if (event.charCode === 13) { // enter key pressed
+          event.preventDefault();
+          emailRef.current.focus();
+        } 
     }
 
+    emailKeyPress(event) {
+        if (event.charCode === 13) { // enter key pressed
+          event.preventDefault();
+          passwordRef.current.focus();
+        } 
+    }
+    pswdKeyPress(event) {
+        if (event.charCode === 13) { // enter key pressed
+          event.preventDefault();
+          confirmPasswordRef.current.focus();
+        } 
+    }
+    cPswdKeyPress(event) {
+        if (event.charCode === 13) { // enter key pressed
+          event.preventDefault();
+          saveRef.current.focus();
+        } 
+    }
+
+    saveKeyPress(event) {
+        if (event.charCode === 13) { // enter key pressed
+          event.preventDefault();
+          this.submit();
+        } 
+    }
     handleChange = (e) => {
         let name = e.target.name;
         let value = e.target.value;
         this.setState({ [name]: value })
     }
-
+ 
     handleClick = (e) => {
         this.setState({ showpassword: !this.state.showpassword })
 
@@ -172,22 +222,22 @@ export default class Registration extends Component {
                             <div className="inputs">
                                 <div className="inline">
                                     <TextField id="outlined-basic" className="firstName" variant="outlined" name="firstname" label="First name" onChange={this.handleChange}
-                                    error={this.state.firstnameError} size="small" margin="dense" helperText={this.state.firstnameErrorMsg}/>
+                                    error={this.state.firstnameError} inputRef={firstnameRef} onKeyPress={this.nameKeyPress} size="small" margin="dense" helperText={this.state.firstnameErrorMsg}/>
 
                                     <TextField id="outlined-basic" className="firstName space" variant="outlined" name="lastname" onChange={this.handleChange}
-                                    error={this.state.lastnameError} label="Last name" size="small" margin="dense" helperText={this.state.lastnameErrorMsg}/>
+                                    error={this.state.lastnameError} inputRef={lastnameRef} onKeyPress={this.lNameKeyPress} label="Last name" size="small" margin="dense" helperText={this.state.lastnameErrorMsg}/>
                                 </div>
                                 <div>
-                                    <TextField id="outlined-basic" variant="outlined" name="username" fullWidth label="Username" onChange={this.handleChange}
+                                    <TextField inputRef={emailRef} onKeyPress={this.emailKeyPress}  id="outlined-basic" variant="outlined" name="username" fullWidth label="Username" onChange={this.handleChange}
                                         error={this.state.usernameError} size="small" margin="dense" helperText={this.state.usernameErrorMsg}/>  <br />
                                 </div>
                                 <a href="#">Use my current email address instead </a>
                                 <div className="inline">
-                                    <TextField id="outlined-basic" className="firstName" type={this.state.showpassword ? "password" : "type"} variant="outlined" name="password" label="Password"
+                                    <TextField inputRef={passwordRef} onKeyPress={this.pswdKeyPress} id="outlined-basic" className="firstName" type={this.state.showpassword ? "password" : "type"} variant="outlined" name="password" label="Password"
                                      size="small" margin="dense" onChange={this.handleChange}
                                         error={this.state.passwordError} helperText={this.state.passwordErrorMsg}/>
 
-                                    <TextField id="outlined-basic" className="firstName space" type={this.state.showpassword ? "password" : "type"} variant="outlined" onChange={this.handleChange} 
+                                    <TextField inputRef={confirmPasswordRef} onKeyPress={this.cPswdKeyPress} id="outlined-basic" className="firstName space" type={this.state.showpassword ? "password" : "type"} variant="outlined" onChange={this.handleChange} 
                                     error={this.state.confirmpasswordError} name="confirmpassword" label="Confirm Password" size="small" margin="dense" helperText={this.state.confirmpasswordErrorMsg}/>
                                 </div>
                                 <span>Use 8 or more characters with a mix of letters, numbers & symbols</span>
@@ -197,7 +247,7 @@ export default class Registration extends Component {
                                 </div>
                                 <div className="inline__buttons">
                                     <Link to="/login">Sign in instead</Link>
-                                    <Button variant="outlined" onClick={this.submit} size="small">Submit</Button>
+                                    <Button variant="outlined" ref={saveRef} onKeyDown={this.saveKeyPress} onClick={this.submit} size="small">Submit</Button>
                                     <Snackbar
                                         anchorOrigin={{
                                             vertical: 'bottom',

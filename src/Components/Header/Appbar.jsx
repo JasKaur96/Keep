@@ -9,11 +9,12 @@ import grid from '../../Assets/Icons/grid.svg';
 import SideDrawer from "../Drawer/SideDrawer";
 import clsx from "clsx";
 import React from "react";
+import Search from "../Search/Search";
 
 const drawerWidth = 230;
 
 const useStyles = makeStyles((theme) => ({
-    root: {
+    root: { 
       display: "flex",
     },
     appBar: {
@@ -104,7 +105,7 @@ const useStyles = makeStyles((theme) => ({
       // margin-right: 36;
       opacity: '0.7'
     },  
-   
+    
     hide: {
       display: '',
     },
@@ -153,20 +154,19 @@ export default function Appbar(props){
 const headerSet =(head)=>{
   heading=[head]
 }
-  const changeName = (head) =>{
+  const changeName = (head) =>{ 
     setHeader(head)
     props.rout(head);
     // onChange(head)
   }
-  console.log("Header AppBar",heading)
+  // console.log("Header AppBar",heading)
     return(
         <div className="header">
            
-            <AppBar position='fixed' color='white' className="appBar">
+            <AppBar position='fixed' color='inherit' className="appBar"> 
                 <Toolbar>
                     <IconButton onClick={handleDrawerOpenClose} 
-                    className={clsx(classes.menuButton, {[classes.menuButton]: open, [classes.hide]: !open,
-                     
+                      className={clsx(classes.menuButton, {[classes.menuButton]: open, [classes.hide]: !open, 
                       })} 
                       color="inherit" edge="start">                           
                         <MenuIcon/>
@@ -175,11 +175,12 @@ const headerSet =(head)=>{
                     <Typography variant="h6" >
                         <span>{heading}</span>
                     </Typography>
-                    
-                    <div className="search">
-                    <IconButton color="inherit" edge="start">    
+                     
+                    <div className={classes.searchInput}>
+                        {/* <IconButton color="inherit" edge="start">    
                         <SearchIcon /></IconButton>
-                        <input type="text" placeholder="Search" />
+                        <input type="text" placeholder="Search" /> */}
+                        <Search handleSearchNote={props.handleSearchNote} />
                     </div>
                     {/* <div  className="profilepic">
                         <Avatar alt="" />
@@ -187,11 +188,11 @@ const headerSet =(head)=>{
                      
                     <div className="icon"></div>
                     <IconButton color="inherit"  edge="start">  
-                        <RefreshIcon /></IconButton>
+                        <RefreshIcon onClick={() => window.location.reload(false)}/></IconButton>
                             
-                    <IconButton color="inherit"  edge="start"><img src={grid}></img></IconButton>
+                    <IconButton color="inherit"  edge="start"><img onClick={()=>props.grid()} src={props.gridView===false ? "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjRweCIgaGVpZ2h0PSIyNHB4IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8ZGVmcz4KICAgICAgICA8cGF0aCBkPSJNMywzIEwxMCwzIEMxMC41NSwzIDExLDMuNDUgMTEsNCBMMTEsMTAgQzExLDEwLjU1IDEwLjU1LDExIDEwLDExIEwzLDExIEMyLjQ1LDExIDIsMTAuNTUgMiwxMCBMMiw0IEMyLDMuNDUgMi40NSwzIDMsMyBaIE0zLDEzIEwxMCwxMyBDMTAuNTUsMTMgMTEsMTMuNDUgMTEsMTQgTDExLDIwIEMxMSwyMC41NSAxMC41NSwyMSAxMCwyMSBMMywyMSBDMi40NSwyMSAyLDIwLjU1IDIsMjAgTDIsMTQgQzIsMTMuNDUgMi40NSwxMyAzLDEzIFogTTE0LDMgTDIxLDMgQzIxLjU1LDMgMjIsMy40NSAyMiw0IEwyMiwxMCBDMjIsMTAuNTUgMjEuNTUsMTEgMjEsMTEgTDE0LDExIEMxMy40NSwxMSAxMywxMC41NSAxMywxMCBMMTMsNCBDMTMsMy40NSAxMy40NSwzIDE0LDMgWiBNMTQsMTMgTDIxLDEzIEMyMS41NSwxMyAyMiwxMy40NSAyMiwxNCBMMjIsMjAgQzIyLDIwLjU1IDIxLjU1LDIxIDIxLDIxIEwxNCwyMSBDMTMuNDUsMjEgMTMsMjAuNTUgMTMsMjAgTDEzLDE0IEMxMywxMy40NSAxMy40NSwxMyAxNCwxMyBaIE05LDkgTDksNSBMNCw1IEw0LDkgTDksOSBaIE05LDE5IEw5LDE1IEw0LDE1IEw0LDE5IEw5LDE5IFogTTIwLDkgTDIwLDUgTDE1LDUgTDE1LDkgTDIwLDkgWiBNMjAsMTkgTDIwLDE1IEwxNSwxNSBMMTUsMTkgTDIwLDE5IFoiIGlkPSJwYXRoLTEiPjwvcGF0aD4KICAgIDwvZGVmcz4KICAgIDxnIGlkPSJncmlkX3ZpZXdfMjRweCIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPHBvbHlnb24gaWQ9ImJvdW5kcyIgZmlsbC1vcGFjaXR5PSIwIiBmaWxsPSIjRkZGRkZGIiBwb2ludHM9IjAgMCAyNCAwIDI0IDI0IDAgMjQiPjwvcG9seWdvbj4KICAgICAgICA8bWFzayBpZD0ibWFzay0yIiBmaWxsPSJ3aGl0ZSI+CiAgICAgICAgICAgIDx1c2UgeGxpbms6aHJlZj0iI3BhdGgtMSI+PC91c2U+CiAgICAgICAgPC9tYXNrPgogICAgICAgIDx1c2UgaWQ9Imljb24iIGZpbGw9IiMwMDAwMDAiIGZpbGwtcnVsZT0ibm9uemVybyIgeGxpbms6aHJlZj0iI3BhdGgtMSI+PC91c2U+CiAgICA8L2c+Cjwvc3ZnPgo=" : "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjRweCIgaGVpZ2h0PSIyNHB4IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGlkPSJsaXN0X3ZpZXdfMjRweCIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPHBvbHlnb24gaWQ9ImJvdW5kcyIgZmlsbC1vcGFjaXR5PSIwIiBmaWxsPSIjRkZGRkZGIiBwb2ludHM9IjAgMCAyNCAwIDI0IDI0IDAgMjQiPjwvcG9seWdvbj4KICAgICAgICA8cGF0aCBkPSJNMjAsOSBMNCw5IEw0LDUgTDIwLDUgTDIwLDkgWiBNMjAsMTkgTDQsMTkgTDQsMTUgTDIwLDE1IEwyMCwxOSBaIE0zLDMgQzIuNDUsMyAyLDMuNDUgMiw0IEwyLDEwIEMyLDEwLjU1IDIuNDUsMTEgMywxMSBMMjEsMTEgQzIxLjU1LDExIDIyLDEwLjU1IDIyLDEwIEwyMiw0IEMyMiwzLjQ1IDIxLjU1LDMgMjEsMyBMMywzIFogTTMsMTMgQzIuNDUsMTMgMiwxMy40NSAyLDE0IEwyLDIwIEMyLDIwLjU1IDIuNDUsMjEgMywyMSBMMjEsMjEgQzIxLjU1LDIxIDIyLDIwLjU1IDIyLDIwIEwyMiwxNCBDMjIsMTMuNDUgMjEuNTUsMTMgMjEsMTMgTDMsMTMgWiIgaWQ9Imljb24iIGZpbGw9IiMwMDAwMDAiIGZpbGwtcnVsZT0ibm9uemVybyI+PC9wYXRoPgogICAgPC9nPgo8L3N2Zz4K"}></img></IconButton>
                     <IconButton color="inherit"  edge="start"> <SettingsOutlinedIcon />
-                    </IconButton>
+                    </IconButton> 
                         
                     <div className="icon1"><IconButton color="inherit"  edge="start">  
                         <AppsIcon /></IconButton>
@@ -201,13 +202,8 @@ const headerSet =(head)=>{
                    </div>
                  </Toolbar>
             </AppBar>  
-            <SideDrawer 
-              open={open} 
-              drawerOpen={handleDrawerOpen} 
-              drawerClose={handleDrawerClose} 
-              drawerOpenClose={handleDrawerOpenClose} 
-              nameChange={changeName} 
-              selected={heading}
+            <SideDrawer open={open} drawerOpen={handleDrawerOpen} drawerClose={handleDrawerClose} 
+              drawerOpenClose={handleDrawerOpenClose} nameChange={changeName} selected={heading}
             />
           
         </div>

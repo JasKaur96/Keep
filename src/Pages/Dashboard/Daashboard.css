@@ -1,18 +1,23 @@
 .search{
-    width:700px ;
+    width:650px ;
     height: 50px;
-    margin-left: 95px;
+    margin-left: 105px;
     border: 1px solid transparent;
     background: #f1f3f4;
     display: flex;
     flex-direction: row;  
     align-items: center;
-    padding-left: 20px;
+    padding-left: -50px;
     justify-content: flex-start;
     border-radius: 8px;
   }
+  .searchIcon{
+    margin-left: 30px;
+    width:50%;
+  }
+
   .search input{
-    width: 500px;
+    width: 600px;
     height: 40px;
     display: flex;
     flex-direction: row;   
@@ -21,10 +26,14 @@
     background: #f1f3f4;
     border: none;
     font-size: 15px;
-    margin-left: 20px;
+    margin-left: 10px;
     outline: none;
   }
-
+.dash{
+  background-color: white;
+  width:100%;
+  height:550vh;
+}
   .profilepic{
     display: flex;
     flex-direction: row;   
@@ -51,3 +60,35 @@
     padding-left: 40px;
     padding-right: 0px;
   }
+
+  
+@media(max-width:600px ){
+  .search{
+      width: 320px;
+      margin-left: 20px;
+  }
+  .search input{
+    width: 100px;
+
+    }
+    
+  .icon{
+    width: 30px;
+    margin-left: -300px;
+    /* display: flex;
+    flex-direction: row;   
+    justify-content: space-around; */
+    /* align-items: ; */
+    /* padding-left: 300px; */
+
+  }
+  .icon1{
+    width: 20px;
+    margin-left: -15px;
+  }
+  .profilepic{
+    width: 20px;
+    margin-left: -20px;
+
+  }
+}

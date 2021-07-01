@@ -23,18 +23,20 @@
     color: black;
     
   }
+
 .close-btn{
     color: black;
     border:none;
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
-    align-items: flex-end;
+    justify-content: center;
+    align-items: center;
      /* padding-right: 40px; */
     /* border: none; */
     width:100px;
     height:30px;
-    margin-top: 15px;
+    margin-top: 45px;
+    margin-left: 425px;
     background-color: white;
 }
 .close-btn:hover{ 
@@ -47,8 +49,9 @@
      /* padding-right: 40px; */
     /* border: none; */
     width:100px;
-    height:30px;
-    margin-top:  15px;
+    height:30px; 
+    margin-top: 45px;
+    margin-left: 425px;
     background-color: rgb(240, 240, 240);
 }
 
@@ -206,12 +209,6 @@
    }
  }
 
-
-
-
-
-
- 
 .takenote{
     width: 600px;
    height: auto;
@@ -254,3 +251,24 @@
    /* background-color: violet; */
    width: 560px;
  }
+
+ 
+@media(max-width:600px ){
+    .takenote{
+        width: 100%;
+        padding: 5px;
+        margin-left: 80px;
+        margin-top: 30px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .brieftakenote{
+        width: 100%;
+        padding: 5px;
+        margin-left: 80px;
+        margin-top: 30px;
+        justify-content: center;
+        align-items: center;
+    }
+}

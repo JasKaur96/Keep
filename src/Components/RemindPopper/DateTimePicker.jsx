@@ -20,7 +20,7 @@ const currencies = [
     value: 'Do not repeat`',
     label: 'Do not repeat',
   },
-  {
+  { 
     value: 'Dailly',
     label: 'Dailly',
   },
@@ -85,15 +85,17 @@ export default function DateTimePicker(props){
       const handleTimeChange = (time) => {
         setSelectedTime(time);
       }
-      const onSave = (e) =>{
+      const onSave = () =>{
         // setOpen(!open)
-        e.stopPropagation();
-        setClose(!close)
+        // e.stopPropagation();
+        handleClose(!open)
+        console.log("OnSave method");
+
         if(props.edit === true){
          
           console.log("if SaveMethod",selectedDate, selectedTime)
-          props.dateTime(selectedDate, selectedTime)
-        }
+          props.updateReminder(selectedDate, selectedTime)
+        } 
         else{
           console.log("else SaveMethod")
           console.log("else SaveMethod",selectedDate, selectedTime)
@@ -167,7 +169,7 @@ export default function DateTimePicker(props){
 
 
 
-
+ 
 
         {/* <div  className="reminder-popper"   style={{  "height":"300px" }}>
         <div className="reminder-data" >

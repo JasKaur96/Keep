@@ -12,7 +12,7 @@ const service = new Services();
 
 
 export default function Archive(props){
-    const [open,setOpen]=React.useState(false);
+    const [open,setOpen]=React.useState(false); 
     const[anchorEl,setanchorEl]=React.useState(null);
 
 
@@ -26,7 +26,7 @@ export default function Archive(props){
             isArchived: true,
             noteIdList:[props.notes.id],
         }
-        
+         
         console.log(props.notes.id);
         console.log("Props",data)
 
@@ -62,7 +62,7 @@ export default function Archive(props){
         })
     }
     const close =()=>{
-        setOpen(!open);
+        setOpen(!open); 
       }
       
     // console.log(props.notes);
@@ -70,10 +70,10 @@ export default function Archive(props){
     return(
         // console.log(props.notes);
         <div>
-            <div>
-            <IconButton className="icone-circle" color="inherit"  edge="start" onClick={()=>close()}>  
+            <div> 
+            <IconButton  className="icon-place" color="inherit"  edge="start" onClick={()=>close()}>  
             {props.notes.isArchived === true?<>
-                 <UnarchiveOutlinedIcon  onClick={()=>unArchieveNote()}  style={{"width":"20px"}} />
+                 <UnarchiveOutlinedIcon className="icon-place" onClick={()=>unArchieveNote()}  style={{"width":"20px"}} />
                   {/* <Snackbar
                         anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
                         open={open} autoHideDuration={6000} onClose={()=>close()} message="Note UnArchived"
